@@ -32,13 +32,14 @@
   }
 
   :root {
-    --ground: #181c15;
-    --ground-2: #1f241b;
-    --hairline: #3a4030;
-    --accent: #cd9f3f;
-    --accent-dim: #7d642a;
-    --ink: #f4efe1;
-    --ink-muted: #a6ab97;
+    --ground: #0c0c0d;
+    --ground-2: #18181a;
+    --ground-3: #09090a;
+    --hairline: rgba(255,255,255,0.14);
+    --accent: #ffffff;
+    --accent-dim: rgba(255,255,255,0.55);
+    --ink: #ffffff;
+    --ink-muted: #c6c6ca;
   }
 
   * { box-sizing: border-box; }
@@ -61,10 +62,7 @@
     display: flex;
     flex-direction: column;
     padding: 3.2vh 4.5vw 3.6vh;
-    background:
-      radial-gradient(140% 90% at 15% 0%, rgba(205,159,63,0.07), transparent 60%),
-      repeating-linear-gradient(135deg, rgba(244,239,225,0.012) 0px, rgba(244,239,225,0.012) 2px, transparent 2px, transparent 26px),
-      var(--ground);
+    background: linear-gradient(180deg, var(--ground) 0%, var(--ground-2) 45%, var(--ground-3) 100%);
   }
 
   .eyebrow {
@@ -188,9 +186,8 @@
     font-size: 4.2vh;
     line-height: 1;
     width: 6vw;
-    color: transparent;
-    -webkit-text-stroke: 0.12vh var(--accent);
-    text-stroke: 0.12vh var(--accent);
+    color: var(--ink);
+
   }
 
   .name-slot {
