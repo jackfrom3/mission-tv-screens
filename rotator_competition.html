@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Competition Rotation — Mission Performance SB</title>
+<style>
+  html, body { margin: 0; padding: 0; width: 100vw; height: 100vh; overflow: hidden; background: #0c0c0d; }
+  iframe { display: block; width: 100vw; height: 100vh; border: none; }
+</style>
+</head>
+<body>
+<iframe id="stage" src=""></iframe>
+<script>
+  var screens = [
+    "ice_cream_bracket_tv.html",
+    "horror_movie_bracket_tv.html",
+    "thanksgiving_food_bracket_tv.html",
+    "christmas_song_bracket_tv.html",
+    "leaderboard_attendance_tv.html",
+    "leaderboard_testing_male_tv.html",
+    "leaderboard_testing_female_tv.html"
+  ];
+  var SECONDS_PER_SCREEN = 18;
+  var i = 0;
+  var frame = document.getElementById("stage");
+
+  function show(index) {
+    frame.src = screens[index] + "?_r=" + Date.now();
+  }
+
+  show(i);
+  setInterval(function () {
+    i = (i + 1) % screens.length;
+    show(i);
+  }, SECONDS_PER_SCREEN * 1000);
+</script>
+</body>
+</html>
