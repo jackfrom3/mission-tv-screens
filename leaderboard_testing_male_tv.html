@@ -174,59 +174,44 @@
   }
 
   .entry {
-    padding: 0.6vh 0;
-  }
-
-  .entry-top {
     display: flex;
     align-items: baseline;
-    gap: 0.5vw;
+    gap: 0.4vw;
+    border-bottom: 1px solid var(--hairline);
+    padding: 0.9vh 0;
   }
 
   .rank {
     flex: 0 0 auto;
     font-family: "Bebas Neue", sans-serif;
     font-weight: 400;
-    font-size: 3.4vh;
+    font-size: 2.6vh;
     line-height: 1;
-    color: var(--ink);
-
+    color: var(--ink-muted);
   }
 
   .name-slot {
     flex: 1 1 auto;
     min-width: 0;
-    border-bottom: 1px solid var(--hairline);
     font-family: "Barlow", sans-serif;
     font-weight: 800;
-    font-size: 2vh;
+    font-size: 1.8vh;
     line-height: 1.12;
     letter-spacing: 0.01em;
     text-transform: uppercase;
     color: var(--ink);
-    padding: 0.2vh 0.2vw 0.5vh;
-    min-height: 4.6vh;
-    display: flex;
-    align-items: flex-end;
-  }
-
-  .value-row {
-    margin-top: 0.6vh;
-    padding-left: 2.4vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .value-slot {
-    border-bottom: 1px solid var(--accent-dim);
+    flex: 0 0 auto;
     font-family: "Bebas Neue", sans-serif;
     font-weight: 400;
     font-size: 2.6vh;
     letter-spacing: 0.02em;
     color: var(--accent);
-    padding: 0.2vh 0.2vw 0.4vh;
-    min-height: 3.4vh;
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
     text-align: right;
   }
 
@@ -265,39 +250,39 @@
 
   <div class="board">
     <div class="metric-col"><div class="metric-head"><div class="metric-name">CMJ Vertical</div><div class="metric-unit">Hands-On-Hips · In</div></div><div class="entries">
-      <div class="entry"><div class="entry-top"><div class="rank">1</div><div class="name-slot">Jake Turner</div></div><div class="value-row"><div class="value-slot">24.8</div></div></div>
-      <div class="entry"><div class="entry-top"><div class="rank">2</div><div class="name-slot">Marcus Bell</div></div><div class="value-row"><div class="value-slot">23.5</div></div></div>
-      <div class="entry"><div class="entry-top"><div class="rank">3</div><div class="name-slot">Ryan Ortiz</div></div><div class="value-row"><div class="value-slot">22.9</div></div></div>
+      <div class="entry"><div class="rank">1</div><div class="name-slot">Jake Turner</div><div class="value-slot">24.8</div></div>
+      <div class="entry"><div class="rank">2</div><div class="name-slot">Marcus Bell</div><div class="value-slot">23.5</div></div>
+      <div class="entry"><div class="rank">3</div><div class="name-slot">Ryan Ortiz</div><div class="value-slot">22.9</div></div>
       </div></div>
     <div class="metric-col"><div class="metric-head"><div class="metric-name">IMTP Strength</div><div class="metric-unit">Rel. Peak Force · N/kg</div></div><div class="entries">
-      <div class="entry"><div class="entry-top"><div class="rank">1</div><div class="name-slot">Diego Alvarez</div></div><div class="value-row"><div class="value-slot">42.3</div></div></div>
-      <div class="entry"><div class="entry-top"><div class="rank">2</div><div class="name-slot">Jake Turner</div></div><div class="value-row"><div class="value-slot">40.1</div></div></div>
-      <div class="entry"><div class="entry-top"><div class="rank">3</div><div class="name-slot">Tyler Brooks</div></div><div class="value-row"><div class="value-slot">38.7</div></div></div>
+      <div class="entry"><div class="rank">1</div><div class="name-slot">Diego Alvarez</div><div class="value-slot">42.3</div></div>
+      <div class="entry"><div class="rank">2</div><div class="name-slot">Jake Turner</div><div class="value-slot">40.1</div></div>
+      <div class="entry"><div class="rank">3</div><div class="name-slot">Tyler Brooks</div><div class="value-slot">38.7</div></div>
       </div></div>
     <div class="metric-col"><div class="metric-head"><div class="metric-name">Broad Jump</div><div class="metric-unit">Feet &amp; Inches</div></div><div class="entries">
-      <div class="entry"><div class="entry-top"><div class="rank">1</div><div class="name-slot">Marcus Bell</div></div><div class="value-row"><div class="value-slot">9&#x27;0&quot;</div></div></div>
-      <div class="entry"><div class="entry-top"><div class="rank">2</div><div class="name-slot">Jake Turner</div></div><div class="value-row"><div class="value-slot">8&#x27;9&quot;</div></div></div>
-      <div class="entry"><div class="entry-top"><div class="rank">3</div><div class="name-slot">Ethan Cole</div></div><div class="value-row"><div class="value-slot">8&#x27;5&quot;</div></div></div>
+      <div class="entry"><div class="rank">1</div><div class="name-slot">Marcus Bell</div><div class="value-slot">9&#x27;0&quot;</div></div>
+      <div class="entry"><div class="rank">2</div><div class="name-slot">Jake Turner</div><div class="value-slot">8&#x27;9&quot;</div></div>
+      <div class="entry"><div class="rank">3</div><div class="name-slot">Ethan Cole</div><div class="value-slot">8&#x27;5&quot;</div></div>
       </div></div>
     <div class="metric-col"><div class="metric-head"><div class="metric-name">10-Yard Sprint</div><div class="metric-unit">Seconds</div></div><div class="entries">
-      <div class="entry"><div class="entry-top"><div class="rank">1</div><div class="name-slot">Sam Rivera</div></div><div class="value-row"><div class="value-slot">1.52</div></div></div>
-      <div class="entry"><div class="entry-top"><div class="rank">2</div><div class="name-slot">Connor Hayes</div></div><div class="value-row"><div class="value-slot">1.58</div></div></div>
-      <div class="entry"><div class="entry-top"><div class="rank">3</div><div class="name-slot">Marcus Bell</div></div><div class="value-row"><div class="value-slot">1.61</div></div></div>
+      <div class="entry"><div class="rank">1</div><div class="name-slot">Sam Rivera</div><div class="value-slot">1.52</div></div>
+      <div class="entry"><div class="rank">2</div><div class="name-slot">Connor Hayes</div><div class="value-slot">1.58</div></div>
+      <div class="entry"><div class="rank">3</div><div class="name-slot">Marcus Bell</div><div class="value-slot">1.61</div></div>
       </div></div>
     <div class="metric-col"><div class="metric-head"><div class="metric-name">Hang Clean</div><div class="metric-unit">Lbs</div></div><div class="entries">
-      <div class="entry"><div class="entry-top"><div class="rank">1</div><div class="name-slot">Nate Foster</div></div><div class="value-row"><div class="value-slot">205</div></div></div>
-      <div class="entry"><div class="entry-top"><div class="rank">2</div><div class="name-slot">Diego Alvarez</div></div><div class="value-row"><div class="value-slot">195</div></div></div>
-      <div class="entry"><div class="entry-top"><div class="rank">3</div><div class="name-slot">Chris Dawson</div></div><div class="value-row"><div class="value-slot">185</div></div></div>
+      <div class="entry"><div class="rank">1</div><div class="name-slot">Nate Foster</div><div class="value-slot">205</div></div>
+      <div class="entry"><div class="rank">2</div><div class="name-slot">Diego Alvarez</div><div class="value-slot">195</div></div>
+      <div class="entry"><div class="rank">3</div><div class="name-slot">Chris Dawson</div><div class="value-slot">185</div></div>
       </div></div>
     <div class="metric-col"><div class="metric-head"><div class="metric-name">Bench Press</div><div class="metric-unit">Lbs</div></div><div class="entries">
-      <div class="entry"><div class="entry-top"><div class="rank">1</div><div class="name-slot">Chris Dawson</div></div><div class="value-row"><div class="value-slot">255</div></div></div>
-      <div class="entry"><div class="entry-top"><div class="rank">2</div><div class="name-slot">Nate Foster</div></div><div class="value-row"><div class="value-slot">235</div></div></div>
-      <div class="entry"><div class="entry-top"><div class="rank">3</div><div class="name-slot">Tyler Brooks</div></div><div class="value-row"><div class="value-slot">225</div></div></div>
+      <div class="entry"><div class="rank">1</div><div class="name-slot">Chris Dawson</div><div class="value-slot">255</div></div>
+      <div class="entry"><div class="rank">2</div><div class="name-slot">Nate Foster</div><div class="value-slot">235</div></div>
+      <div class="entry"><div class="rank">3</div><div class="name-slot">Tyler Brooks</div><div class="value-slot">225</div></div>
       </div></div>
     <div class="metric-col"><div class="metric-head"><div class="metric-name">Squat</div><div class="metric-unit">Lbs</div></div><div class="entries">
-      <div class="entry"><div class="entry-top"><div class="rank">1</div><div class="name-slot">Diego Alvarez</div></div><div class="value-row"><div class="value-slot">365</div></div></div>
-      <div class="entry"><div class="entry-top"><div class="rank">2</div><div class="name-slot">Chris Dawson</div></div><div class="value-row"><div class="value-slot">345</div></div></div>
-      <div class="entry"><div class="entry-top"><div class="rank">3</div><div class="name-slot">Nate Foster</div></div><div class="value-row"><div class="value-slot">325</div></div></div>
+      <div class="entry"><div class="rank">1</div><div class="name-slot">Diego Alvarez</div><div class="value-slot">365</div></div>
+      <div class="entry"><div class="rank">2</div><div class="name-slot">Chris Dawson</div><div class="value-slot">345</div></div>
+      <div class="entry"><div class="rank">3</div><div class="name-slot">Nate Foster</div><div class="value-slot">325</div></div>
       </div></div>
   </div>
 
