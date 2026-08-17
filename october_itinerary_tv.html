@@ -182,6 +182,27 @@
     line-height: 1.28;
   }
 
+  .item-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3vh;
+  }
+
+  .item-list li {
+    font-family: "Barlow", sans-serif;
+    font-weight: 500;
+    font-size: 2.1vh;
+    color: var(--ink-muted);
+    line-height: 1.28;
+  }
+
+  .item-list li::before {
+    content: "•  ";
+  }
+
   .strapline {
     flex: 0 0 auto;
     margin-top: 1.3vh;
@@ -216,7 +237,7 @@
   <h1>October</h1>
 
   <div class="items">
-    <div class="item"><div class="tag">THEME</div><div class="item-body"><div class="item-title">Nutrition</div><div class="item-desc">Fueling for performance, in step with the dietitian talk.</div></div></div>
+    <div class="item"><div class="tag">THEME</div><div class="item-body"><div class="item-title">Nutrition</div><ul class="item-list"><li>Basic nutrition terms</li><li>Athlete nutrition checklist</li><li>Supplements</li><li>Putting it all together</li></ul></div></div>
     <div class="item"><div class="tag">SPEAKER</div><div class="item-body"><div class="item-title">Registered Dietitian</div><div class="item-desc">Fueling for performance — name and date TBD.</div></div></div>
     <div class="item"><div class="tag">EVENT</div><div class="item-body"><div class="item-title">Horror Movie Bracket</div><div class="item-desc">16-movie bracket — one round of voting per week.</div></div></div>
     <div class="item"><div class="tag">EVENT</div><div class="item-body"><div class="item-title">Halloween Lift</div><div class="item-desc">One-time themed training session during Halloween week.</div></div></div>
