@@ -162,6 +162,7 @@
   .col-heads .rank-head { width: 6vw; flex: 0 0 auto; }
   .col-heads .name-head { flex: 1 1 auto; }
   .col-heads .value-head { width: 10vw; flex: 0 0 auto; text-align: right; }
+  .col-heads .move-head { width: 7vw; flex: 0 0 auto; text-align: right; }
 
   .col-heads > div {
     font-family: "Barlow", sans-serif;
@@ -222,6 +223,24 @@
     text-align: right;
   }
 
+  .move-slot {
+    flex: 0 0 7vw;
+    font-family: "Barlow", sans-serif;
+    font-weight: 700;
+    font-size: 1.9vh;
+    letter-spacing: 0.02em;
+    color: var(--ink-muted);
+    padding: 0.2vh 0.3vw 0.3vh;
+    min-height: 3.3vh;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    text-align: right;
+  }
+
+  .move-slot.up { color: var(--ink); font-weight: 900; }
+  .move-slot.new { color: var(--ink); font-weight: 900; letter-spacing: 0.06em; }
+
   .strapline {
     flex: 0 0 auto;
     margin-top: 1.3vh;
@@ -263,19 +282,22 @@
       <div class="rank-head">Rank</div>
       <div class="name-head">Athlete</div>
       <div class="value-head">Sessions</div>
+      <div class="move-head">Trend</div>
     </div>
-    <div class="row"><div class="rank">1</div><div class="name-slot">Rudy Blue</div><div class="value-slot">76</div></div>
-    <div class="row"><div class="rank">2</div><div class="name-slot">Quinn Melton</div><div class="value-slot">64</div></div>
-    <div class="row"><div class="rank">3</div><div class="name-slot">Matty Mancuso</div><div class="value-slot">55</div></div>
-    <div class="row"><div class="rank">3</div><div class="name-slot">Brandon Weaver</div><div class="value-slot">55</div></div>
-    <div class="row"><div class="rank">5</div><div class="name-slot">Kieran Young</div><div class="value-slot">53</div></div>
-    <div class="row"><div class="rank">6</div><div class="name-slot">Beckett Mcmanigal</div><div class="value-slot">51</div></div>
-    <div class="row"><div class="rank">7</div><div class="name-slot">Ali Chase-Reyes</div><div class="value-slot">49</div></div>
-    <div class="row"><div class="rank">7</div><div class="name-slot">Brooks Firestone</div><div class="value-slot">49</div></div>
-    <div class="row"><div class="rank">7</div><div class="name-slot">Sterling Fisher</div><div class="value-slot">49</div></div>
-    <div class="row"><div class="rank">10</div><div class="name-slot">Addy Duex</div><div class="value-slot">48</div></div>
-    <div class="row"><div class="rank">10</div><div class="name-slot">Maritt Blabey</div><div class="value-slot">48</div></div>
-    <div class="row"><div class="rank">10</div><div class="name-slot">Karly Foster</div><div class="value-slot">48</div></div>
+    <div class="row"><div class="rank">1</div><div class="name-slot">Rudy Blue</div><div class="value-slot">77</div><div class="move-slot new">NEW</div></div>
+    <div class="row"><div class="rank">2</div><div class="name-slot">Quinn Melton</div><div class="value-slot">64</div><div class="move-slot new">NEW</div></div>
+    <div class="row"><div class="rank">3</div><div class="name-slot">Matty Mancuso</div><div class="value-slot">55</div><div class="move-slot new">NEW</div></div>
+    <div class="row"><div class="rank">3</div><div class="name-slot">Brandon Weaver</div><div class="value-slot">55</div><div class="move-slot new">NEW</div></div>
+    <div class="row"><div class="rank">5</div><div class="name-slot">Kieran Young</div><div class="value-slot">53</div><div class="move-slot new">NEW</div></div>
+    <div class="row"><div class="rank">6</div><div class="name-slot">Beckett Mcmanigal</div><div class="value-slot">51</div><div class="move-slot new">NEW</div></div>
+    <div class="row"><div class="rank">7</div><div class="name-slot">Ali Chase-Reyes</div><div class="value-slot">50</div><div class="move-slot new">NEW</div></div>
+    <div class="row"><div class="rank">8</div><div class="name-slot">Brooks Firestone</div><div class="value-slot">49</div><div class="move-slot new">NEW</div></div>
+    <div class="row"><div class="rank">8</div><div class="name-slot">Addy Duex</div><div class="value-slot">49</div><div class="move-slot new">NEW</div></div>
+    <div class="row"><div class="rank">8</div><div class="name-slot">Maritt Blabey</div><div class="value-slot">49</div><div class="move-slot new">NEW</div></div>
+    <div class="row"><div class="rank">8</div><div class="name-slot">Sterling Fisher</div><div class="value-slot">49</div><div class="move-slot new">NEW</div></div>
+    <div class="row"><div class="rank">8</div><div class="name-slot">Karly Foster</div><div class="value-slot">49</div><div class="move-slot new">NEW</div></div>
+    <div class="row"><div class="rank">13</div><div class="name-slot">Christian Martinez</div><div class="value-slot">45</div><div class="move-slot new">NEW</div></div>
+    <div class="row"><div class="rank">13</div><div class="name-slot">Jaylon Dandona</div><div class="value-slot">45</div><div class="move-slot new">NEW</div></div>
   </div>
 
   <div class="strapline">
