@@ -219,6 +219,12 @@
     color: var(--ink-muted);
   }
 
+  .slot.loser {
+    color: rgba(255,255,255,0.3);
+    text-decoration: line-through;
+    font-weight: 500;
+  }
+
   .champion-col {
     flex: 0 0 11vw;
     display: flex;
@@ -295,23 +301,23 @@
     <div class="round round-seed">
       <div class="round-label">Round of 16</div>
       <div class="round-body">
-        <div class="match"><div class="slot">S&#x27;mores</div><div class="slot">Earl Grey &amp; Butter Biscuits</div></div>
-        <div class="match"><div class="slot">Sea Salt Cream &amp; Cookies</div><div class="slot">Eureka Lemon &amp; Marionberries</div></div>
-        <div class="match"><div class="slot">Sweet Cream Caramel Brownie</div><div class="slot">Chocolate Chocolate Chocolate</div></div>
-        <div class="match"><div class="slot">Vanilla Bean</div><div class="slot">Mint Chip</div></div>
-        <div class="match"><div class="slot">Salted Caramel Chip</div><div class="slot">Rocky Road</div></div>
-        <div class="match"><div class="slot">Cookie Dough</div><div class="slot">Coffee</div></div>
-        <div class="match"><div class="slot">Churros con Leche</div><div class="slot">Brownies Cookies &amp; Fudge</div></div>
-        <div class="match"><div class="slot">Chocolate Peanut Butter Brownie</div><div class="slot">Matcha</div></div>
+        <div class="match"><div class="slot winner">S&#x27;mores</div><div class="slot loser">Earl Grey &amp; Butter Biscuits</div></div>
+        <div class="match"><div class="slot winner">Sea Salt Cream &amp; Cookies</div><div class="slot loser">Eureka Lemon &amp; Marionberries</div></div>
+        <div class="match"><div class="slot winner">Sweet Cream Caramel Brownie</div><div class="slot loser">Chocolate Chocolate Chocolate</div></div>
+        <div class="match"><div class="slot loser">Vanilla Bean</div><div class="slot winner">Mint Chip</div></div>
+        <div class="match"><div class="slot winner">Salted Caramel Chip</div><div class="slot loser">Rocky Road</div></div>
+        <div class="match"><div class="slot winner">Cookie Dough</div><div class="slot loser">Coffee</div></div>
+        <div class="match"><div class="slot loser">Churros con Leche</div><div class="slot winner">Brownies Cookies &amp; Fudge</div></div>
+        <div class="match"><div class="slot winner">Chocolate Peanut Butter Brownie</div><div class="slot loser">Matcha</div></div>
       </div>
     </div>
     <div class="round quarters">
       <div class="round-label">Quarterfinals</div>
       <div class="round-body">
-        <div class="match"><div class="slot">&nbsp;</div><div class="slot">&nbsp;</div></div>
-        <div class="match"><div class="slot">&nbsp;</div><div class="slot">&nbsp;</div></div>
-        <div class="match"><div class="slot">&nbsp;</div><div class="slot">&nbsp;</div></div>
-        <div class="match"><div class="slot">&nbsp;</div><div class="slot">&nbsp;</div></div>
+        <div class="match"><div class="slot">S&#x27;mores</div><div class="slot">Sea Salt Cream &amp; Cookies</div></div>
+        <div class="match"><div class="slot">Sweet Cream Caramel Brownie</div><div class="slot">Mint Chip</div></div>
+        <div class="match"><div class="slot">Salted Caramel Chip</div><div class="slot">Cookie Dough</div></div>
+        <div class="match"><div class="slot">Brownies Cookies &amp; Fudge</div><div class="slot">Chocolate Peanut Butter Brownie</div></div>
       </div>
     </div>
     <div class="round semis">
