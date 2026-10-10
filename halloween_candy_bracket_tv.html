@@ -219,6 +219,12 @@
     color: var(--ink-muted);
   }
 
+  .slot.loser {
+    color: rgba(255,255,255,0.3);
+    text-decoration: line-through;
+    font-weight: 500;
+  }
+
   .champion-col {
     flex: 0 0 11vw;
     display: flex;
@@ -295,23 +301,23 @@
     <div class="round round-seed">
       <div class="round-label">Round of 16</div>
       <div class="round-body">
-        <div class="match"><div class="slot">Reese’s Peanut Butter Cups</div><div class="slot">Candy Corn</div></div>
-        <div class="match"><div class="slot">Snickers</div><div class="slot">Butterfinger</div></div>
-        <div class="match"><div class="slot">KitKat</div><div class="slot">Twizzlers</div></div>
-        <div class="match"><div class="slot">M&amp;Ms</div><div class="slot">Nerds</div></div>
-        <div class="match"><div class="slot">Skittles</div><div class="slot">Milky Way</div></div>
-        <div class="match"><div class="slot">Starburst</div><div class="slot">Sour Patch Kids</div></div>
-        <div class="match"><div class="slot">3 Musketeers</div><div class="slot">Jolly Ranchers</div></div>
-        <div class="match"><div class="slot">Milk Duds</div><div class="slot">Twix</div></div>
+        <div class="match"><div class="slot winner">Reese’s Peanut Butter Cups</div><div class="slot loser">Candy Corn</div></div>
+        <div class="match"><div class="slot winner">Snickers</div><div class="slot loser">Butterfinger</div></div>
+        <div class="match"><div class="slot winner">KitKat</div><div class="slot loser">Twizzlers</div></div>
+        <div class="match"><div class="slot winner">M&amp;Ms</div><div class="slot loser">Nerds</div></div>
+        <div class="match"><div class="slot winner">Skittles</div><div class="slot loser">Milky Way</div></div>
+        <div class="match"><div class="slot loser">Starburst</div><div class="slot winner">Sour Patch Kids</div></div>
+        <div class="match"><div class="slot loser">3 Musketeers</div><div class="slot winner">Jolly Ranchers</div></div>
+        <div class="match"><div class="slot loser">Milk Duds</div><div class="slot winner">Twix</div></div>
       </div>
     </div>
     <div class="round quarters">
       <div class="round-label">Quarterfinals</div>
       <div class="round-body">
-        <div class="match"><div class="slot">&nbsp;</div><div class="slot">&nbsp;</div></div>
-        <div class="match"><div class="slot">&nbsp;</div><div class="slot">&nbsp;</div></div>
-        <div class="match"><div class="slot">&nbsp;</div><div class="slot">&nbsp;</div></div>
-        <div class="match"><div class="slot">&nbsp;</div><div class="slot">&nbsp;</div></div>
+        <div class="match"><div class="slot">Reese’s Peanut Butter Cups</div><div class="slot">Snickers</div></div>
+        <div class="match"><div class="slot">KitKat</div><div class="slot">M&amp;Ms</div></div>
+        <div class="match"><div class="slot">Skittles</div><div class="slot">Sour Patch Kids</div></div>
+        <div class="match"><div class="slot">Jolly Ranchers</div><div class="slot">Twix</div></div>
       </div>
     </div>
     <div class="round semis">
