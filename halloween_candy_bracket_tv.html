@@ -219,6 +219,11 @@
     color: var(--ink-muted);
   }
 
+  .quarters .slot.winner, .semis .slot.winner, .final .slot.winner {
+    font-weight: 700;
+    color: var(--ink);
+  }
+
   .slot.loser {
     color: rgba(255,255,255,0.3);
     text-decoration: line-through;
@@ -314,17 +319,17 @@
     <div class="round quarters">
       <div class="round-label">Quarterfinals</div>
       <div class="round-body">
-        <div class="match"><div class="slot">Reese’s Peanut Butter Cups</div><div class="slot">Snickers</div></div>
-        <div class="match"><div class="slot">KitKat</div><div class="slot">M&amp;Ms</div></div>
-        <div class="match"><div class="slot">Skittles</div><div class="slot">Sour Patch Kids</div></div>
-        <div class="match"><div class="slot">Jolly Ranchers</div><div class="slot">Twix</div></div>
+        <div class="match"><div class="slot winner">Reese’s Peanut Butter Cups</div><div class="slot loser">Snickers</div></div>
+        <div class="match"><div class="slot winner">KitKat</div><div class="slot loser">M&amp;Ms</div></div>
+        <div class="match"><div class="slot loser">Skittles</div><div class="slot winner">Sour Patch Kids</div></div>
+        <div class="match"><div class="slot loser">Jolly Ranchers</div><div class="slot winner">Twix</div></div>
       </div>
     </div>
     <div class="round semis">
       <div class="round-label">Semifinal</div>
       <div class="round-body">
-        <div class="match"><div class="slot">&nbsp;</div><div class="slot">&nbsp;</div></div>
-        <div class="match"><div class="slot">&nbsp;</div><div class="slot">&nbsp;</div></div>
+        <div class="match"><div class="slot">Reese’s Peanut Butter Cups</div><div class="slot">KitKat</div></div>
+        <div class="match"><div class="slot">Sour Patch Kids</div><div class="slot">Twix</div></div>
       </div>
     </div>
     <div class="round final no-connector">
