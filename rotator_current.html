@@ -27,6 +27,7 @@
 
   // THEME: Halloween 80s look on every screen until Mon 11/2/2026 (turns itself off after).
   var THEME_UNTIL = new Date("2026-11-02T00:00:00-08:00");
+  if (new Date() < THEME_UNTIL) document.body.style.background = "#12001f";
   var THEME_VERSION = Date.now() - Date.now() % 3600000; // re-fetch the theme at most hourly
   // One horror villain per screen: real convention cosplay photos from Wikimedia Commons
   // (free licenses, credited on screen). Files live in villains/.
@@ -85,12 +86,14 @@
         if (shown) return;
         shown = true;
         setTimeout(function () {
-          next.classList.add("on");
+          // new screen fades in on top while the old one stays solid underneath
           var old = frames[cur];
-          old.classList.remove("on");
+          next.style.zIndex = 2;
+          old.style.zIndex = 1;
+          next.classList.add("on");
           cur = 1 - cur;
-          // stop the hidden screen's animations once the fade is done
-          setTimeout(function () { old.onload = null; old.src = "about:blank"; }, 500);
+          // then hide the old one and stop its animations
+          setTimeout(function () { old.classList.remove("on"); old.onload = null; old.src = "about:blank"; }, 500);
         }, 300);
       });
     };
