@@ -5,11 +5,13 @@
 <title>Current Rotation — Mission Performance SB</title>
 <style>
   html, body { margin: 0; padding: 0; width: 100vw; height: 100vh; overflow: hidden; background: #0c0c0d; }
-  iframe { display: block; width: 100vw; height: 100vh; border: none; }
+  iframe { position: absolute; inset: 0; display: block; width: 100vw; height: 100vh; border: none; opacity: 0; transition: opacity 0.35s ease; }
+  iframe.on { opacity: 1; }
 </style>
 </head>
 <body>
-<iframe id="stage" src=""></iframe>
+<iframe id="a"></iframe>
+<iframe id="b"></iframe>
 <script>
   // Update this list each month: swap the itinerary + bracket for the new month.
   var screens = [
@@ -22,10 +24,10 @@
   ];
   var SECONDS_PER_SCREEN = 18;
   var i = 0;
-  var frame = document.getElementById("stage");
 
   // THEME: Halloween 80s look on every screen until Mon 11/2/2026 (turns itself off after).
   var THEME_UNTIL = new Date("2026-11-02T00:00:00-08:00");
+  var THEME_VERSION = Date.now() - Date.now() % 3600000; // re-fetch the theme at most hourly
   // One horror villain per screen: real convention cosplay photos from Wikimedia Commons
   // (free licenses, credited on screen). Files live in villains/.
   var VILLAINS = [
@@ -36,13 +38,18 @@
     { name: "Pennywise", film: "It · 1990", img: "pennywise", credit: "Photo: Pikawil · CC BY-SA 2.0, cropped" },
     { name: "Ghostface", film: "Scream · 1996", img: "ghostface", credit: "Photo: Stéphane Gallay · CC BY 2.0" }
   ];
-  frame.onload = function () {
-    if (new Date() >= THEME_UNTIL) return;
+  // Dresses up a loaded screen, then calls done() once the theme stylesheet is in.
+  function theme(frame, idx, done) {
+    if (new Date() >= THEME_UNTIL) return done();
     try {
       var d = frame.contentDocument;
       var link = d.createElement("link");
       link.rel = "stylesheet";
-      link.href = "halloween80s.css?_r=" + Date.now();
+      link.href = "halloween80s.css?v=" + THEME_VERSION;
+      var waiting = 2; // stylesheet + villain photo
+      var ready = function () { if (--waiting === 0) done(); };
+      link.onload = link.onerror = ready;
+      setTimeout(done, 2500);
       d.head.appendChild(link);
       var fx = d.createElement("div");
       fx.className = "h80-fx";
@@ -57,15 +64,34 @@
         '<div class="h80-moonbat m2"><div class="h80-flap"><svg viewBox="0 0 100 40"><path d="M50 14c-2-6-6-6-6-6l2 6c-8-2-14-12-34-10 6 4 6 10 2 14 6-2 10 0 12 6 4-4 10-4 14 0 2-4 6-6 10-4 4-2 8 0 10 4 4-4 10-4 14 0 2-6 6-8 12-6-4-4-4-10 2-14-20-2-26 8-34 10l2-6s-4 0-6 6z"/></svg></div></div>' +
         '<div class="h80-moonbat m3"><div class="h80-flap"><svg viewBox="0 0 100 40"><path d="M50 14c-2-6-6-6-6-6l2 6c-8-2-14-12-34-10 6 4 6 10 2 14 6-2 10 0 12 6 4-4 10-4 14 0 2-4 6-6 10-4 4-2 8 0 10 4 4-4 10-4 14 0 2-6 6-8 12-6-4-4-4-10 2-14-20-2-26 8-34 10l2-6s-4 0-6 6z"/></svg></div></div>';
       d.body.appendChild(back);
-      var v = VILLAINS[i % VILLAINS.length];
+      var v = VILLAINS[idx % VILLAINS.length];
       fx.innerHTML += '<div class="h80-villain"><img src="villains/' + v.img + '.webp" alt="">' +
         '<div class="h80-tag"><b>' + v.name + '</b><span>' + v.film + '</span><i>' + v.credit + '</i></div></div>';
       d.body.appendChild(fx);
-    } catch (e) {}
-  };
+      var pic = fx.querySelector(".h80-villain img");
+      if (pic.complete) ready(); else pic.onload = pic.onerror = ready;
+    } catch (e) { done(); }
+  }
 
+  // Two frames: the next screen loads hidden, gets its theme, then fades in over the
+  // current one, so the plain look never flashes on the TV.
+  var frames = [document.getElementById("a"), document.getElementById("b")];
+  var cur = 0;
   function show(index) {
-    frame.src = screens[index] + "?_r=" + Date.now();
+    var next = frames[1 - cur];
+    next.onload = function () {
+      var shown = false;
+      theme(next, index, function () {
+        if (shown) return;
+        shown = true;
+        setTimeout(function () {
+          next.classList.add("on");
+          frames[cur].classList.remove("on");
+          cur = 1 - cur;
+        }, 300);
+      });
+    };
+    next.src = screens[index] + "?_r=" + Date.now();
   }
 
   show(i);
