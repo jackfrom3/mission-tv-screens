@@ -26,6 +26,37 @@
 
   // THEME: Halloween 80s look on every screen until Mon 11/2/2026 (turns itself off after).
   var THEME_UNTIL = new Date("2026-11-02T00:00:00-08:00");
+  // One horror villain per screen, drawn as neon line art (stroke only).
+  var VILLAINS = [
+    { name: "Jason", film: "Friday the 13th · 1980",
+      svg: '<path d="M50 6C28 6 18 26 18 50s12 44 32 44 32-20 32-44S72 6 50 6z"/>' +
+           '<path d="M30 40q8-6 16 0q-8 7-16 0zM54 40q8-6 16 0q-8 7-16 0z"/>' +
+           '<path class="red" d="M40 20l4 8 4-8M52 20l4 8 4-8M28 58l5 5 5-5M62 58l5 5 5-5"/>' +
+           '<circle cx="50" cy="56" r="2"/><circle cx="42" cy="72" r="2"/><circle cx="50" cy="74" r="2"/><circle cx="58" cy="72" r="2"/>' +
+           '<circle cx="36" cy="82" r="1.6"/><circle cx="64" cy="82" r="1.6"/><circle cx="50" cy="86" r="1.6"/>' },
+    { name: "Freddy", film: "A Nightmare on Elm Street · 1984",
+      svg: '<path d="M30 96V64q0-12 10-14h22q10 2 10 14v32"/>' +
+           '<path d="M38 50L30 6M46 50L44 2M54 50L58 3M62 50L72 8"/>' +
+           '<path class="red" d="M30 72h42M30 82h42M30 92h42"/>' +
+           '<path d="M72 66q12-4 16 4"/>' },
+    { name: "Michael Myers", film: "Halloween · 1978",
+      svg: '<path d="M50 14c-18 0-26 14-26 32 0 22 10 40 26 40s26-18 26-40c0-18-8-32-26-32z"/>' +
+           '<path d="M24 40q-6-26 26-30q32 4 26 30"/>' +
+           '<path d="M34 44q6-4 11 0M55 44q5-4 11 0M44 72q6 3 12 0M50 50v12"/>' +
+           '<path class="red" d="M86 30L70 92M70 92l-4 6M82 44l6 2"/>' },
+    { name: "Leatherface", film: "The Texas Chain Saw Massacre · 1974",
+      svg: '<rect x="8" y="42" width="34" height="28" rx="4"/>' +
+           '<path d="M16 42v-8h18v8M42 50h46a6 6 0 0 1 0 12H42"/>' +
+           '<path class="red" d="M46 50l3-4 3 4 3-4 3 4 3-4 3 4 3-4 3 4 3-4 3 4 3-4 3 4M46 62l3 4 3-4 3 4 3-4 3 4 3-4 3 4 3-4 3 4 3-4 3 4 3-4"/>' +
+           '<circle cx="25" cy="56" r="6"/>' },
+    { name: "Pennywise", film: "It · 1990",
+      svg: '<path class="red" d="M50 8c-16 0-26 12-26 26 0 18 16 30 26 34 10-4 26-16 26-34C76 20 66 8 50 8z"/>' +
+           '<path d="M46 68h8l-4 6zM50 74q-8 8 0 14t0 12"/><path d="M38 22q6-6 12-6"/>' },
+    { name: "Ghostface", film: "Scream · 1996",
+      svg: '<path d="M50 4C30 4 20 22 20 44c0 26 14 48 30 52 16-4 30-26 30-52C80 22 70 4 50 4z"/>' +
+           '<path d="M32 36q6-4 10 2l-2 14q-6 2-8-6zM68 36q-6-4-10 2l2 14q6 2 8-6z"/>' +
+           '<path d="M44 62q6-4 12 0l-2 22q-4 4-8 0z"/>' }
+  ];
   frame.onload = function () {
     if (new Date() >= THEME_UNTIL) return;
     try {
@@ -38,7 +69,15 @@
       fx.className = "h80-fx";
       fx.innerHTML = '<div class="h80-flash"></div><div class="h80-scan"></div>' +
         '<div class="h80-bat">🦇</div><div class="h80-bat b2">🦇</div><div class="h80-bat b3">🦇</div>' +
-        '<div class="h80-ghost">👻</div><div class="h80-pumpkin">🎃</div>';
+        '<div class="h80-pumpkin">🎃</div>';
+      var back = d.createElement("div");
+      back.className = "h80-fx h80-back";
+      back.innerHTML = '<div class="h80-fog"></div>' +
+        '<div class="h80-eyes e1"></div><div class="h80-eyes e2"></div><div class="h80-eyes e3"></div>';
+      d.body.appendChild(back);
+      var v = VILLAINS[i % VILLAINS.length];
+      fx.innerHTML += '<div class="h80-villain"><svg viewBox="0 0 100 100">' + v.svg + '</svg>' +
+        '<div class="h80-tag"><b>' + v.name + '</b><span>' + v.film + '</span></div></div>';
       d.body.appendChild(fx);
     } catch (e) {}
   };

@@ -27,19 +27,15 @@
 }
 .stage > * { position: relative; z-index: 2; }
 
-/* retro sun sinking behind the grid */
+/* blood moon over a graveyard + haunted house, sits behind everything */
 .stage::before {
   content: "";
   position: absolute; z-index: 0;
-  left: 50%; bottom: 14vh;
-  width: 46vh; height: 46vh; margin-left: -23vh;
-  border-radius: 50%;
-  background: linear-gradient(180deg, #ffe14a 0%, #ff7a18 45%, #ff3fd0 100%);
-  -webkit-mask: repeating-linear-gradient(180deg, #000 0 2.6vh, transparent 2.6vh 3.4vh);
-          mask: repeating-linear-gradient(180deg, #000 0 2.6vh, transparent 2.6vh 3.4vh);
-  opacity: 0.22;
-  filter: blur(0.15vh);
-  animation: h80-sun 6s ease-in-out infinite;
+  left: 0; right: 0; bottom: 0; height: 62vh;
+  background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNjAwIDUwMCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNYXggc2xpY2UiPgo8ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9Im0iIGN4PSI1MCUiIGN5PSI1MCUiIHI9IjUwJSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZmZkMmIwIi8+PHN0b3Agb2Zmc2V0PSIuNyIgc3RvcC1jb2xvcj0iI2UwNGEyYSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2UwNGEyYSIgc3RvcC1vcGFjaXR5PSIwIi8+PC9yYWRpYWxHcmFkaWVudD48L2RlZnM+CjxjaXJjbGUgY3g9IjExODAiIGN5PSIxNzAiIHI9IjE1MCIgZmlsbD0idXJsKCNtKSIgb3BhY2l0eT0iLjU1Ii8+CjxnIGZpbGw9IiMwNTAwMDgiPgo8cGF0aCBkPSJNMCA1MDBWNDMwcTIwMC00MCA0MjAtMTB0NDIwIDAgNDIwLTIwIDM0MCAxMHY5MHoiLz4KPHBhdGggZD0iTTE0MCA0NDBWMzMwbDYwLTYwIDYwIDYwdjExMHpNMTgwIDMzMGg0MHYtMzZoLTQweiIvPgo8cGF0aCBkPSJNNjAwIDQ0MFYzMDBoNDB2LTQwaC0zMGw3MC05MCA3MCA5MGgtMzB2NDBoNDB2MTQwek01NjAgNDQwVjM1MGw0MC00MCA0MCA0MHY5MHpNNzYwIDQ0MFYzMzBsNTAtNTAgNTAgNTB2MTEweiIvPgo8cGF0aCBkPSJNNzAwIDIzMGw2LTExMCA4IDExMHoiLz4KPHBhdGggZD0iTTMwMCA0NDB2LTQwcTAtMjIgMjItMjJ0MjIgMjJ2NDB6TTQwMCA0NDB2LTUwcTAtMjAgMTgtMjB0MTggMjB2NTB6TTQ2MCA0NDB2LTI4aC0xMnYtMTBoMTJ2LTE0aDEwdjE0aDEydjEwaC0xMnYyOHpNOTYwIDQ0MHYtMzZxMC0xOCAxOC0xOHQxOCAxOHYzNnpNMTA0MCA0NDB2LTM0aC0xNHYtMTBoMTR2LTE4aDEydjE4aDE0djEwaC0xNHYzNHpNMTEyMCA0NDB2LTQ0cTAtMjIgMjItMjJ0MjIgMjJ2NDR6TTE0NDAgNDQwdi0zMHEwLTE2IDE2LTE2dDE2IDE2djMweiIvPgo8cGF0aCBkPSJNMTI5MCA0NDBsNi05MC02MC02MCA4LTYgNTQgNTAgNC03MC01MC03MCA4LTQgNDYgNjAgMTAtNjBoMTBsLTggODAgNDAtNTAgOCA2LTQ4IDY0LTIgODAgNTAtNDAgNiA4LTU4IDUwLTQgNTJ6Ii8+CjwvZz4KPGcgZmlsbD0iI2ZmZTE0YSI+PHJlY3QgeD0iNjIwIiB5PSIzMjAiIHdpZHRoPSIxMiIgaGVpZ2h0PSIxNiIvPjxyZWN0IHg9IjY2OCIgeT0iMzIwIiB3aWR0aD0iMTIiIGhlaWdodD0iMTYiIG9wYWNpdHk9Ii41Ii8+PHJlY3QgeD0iNzg0IiB5PSIzNjAiIHdpZHRoPSIxMCIgaGVpZ2h0PSIxNCIvPjwvZz4KPC9zdmc+") center bottom / cover no-repeat;
+  opacity: 0.6;
+  animation: h80-moon 6s ease-in-out infinite;
+  pointer-events: none;
 }
 
 /* neon perspective grid floor, scrolling toward the viewer */
@@ -98,6 +94,7 @@ h1 {
 
 /* full-screen extras added by the rotator */
 .h80-fx { position: fixed; inset: 0; pointer-events: none; z-index: 50; overflow: hidden; }
+.h80-fx.h80-back { z-index: 1; } /* fog + eyes stay behind the text */
 .h80-scan {
   position: absolute; inset: 0;
   background: repeating-linear-gradient(180deg, rgba(0, 0, 0, 0.18) 0 2px, transparent 2px 4px);
@@ -132,7 +129,7 @@ h1 {
 }
 
 @keyframes h80-grid { from { background-position: 0 0; } to { background-position: 0 8vh; } }
-@keyframes h80-sun { 0%, 100% { opacity: 0.18; } 50% { opacity: 0.3; } }
+@keyframes h80-moon { 0%, 100% { opacity: 0.6; } 50% { opacity: 0.8; } }
 @keyframes h80-frame {
   0%, 100% { box-shadow: inset 0 0 0 0.5vh var(--neon-orange), inset 0 0 4vh rgba(255, 122, 24, 0.5); }
   50% { box-shadow: inset 0 0 0 0.5vh var(--neon-purple), inset 0 0 4vh rgba(193, 75, 255, 0.6); }
@@ -155,3 +152,55 @@ h1 {
 }
 @keyframes h80-bob { 0%, 100% { transform: translateY(0) rotate(-6deg); } 50% { transform: translateY(-1.2vh) rotate(6deg); } }
 @keyframes h80-ghost { 0%, 100% { transform: translate(0, 0); opacity: 0.25; } 50% { transform: translate(1vw, -3vh); opacity: 0.85; } }
+
+/* horror villain of the screen, top right, slides in and flickers */
+.h80-villain {
+  position: absolute; right: 9vw; top: 2vh;
+  display: flex; align-items: center; gap: 1.2vw;
+  animation: h80-villain-in 1.4s ease-out both, h80-villain-flicker 5s linear 1.4s infinite;
+}
+.h80-villain svg {
+  width: 13vh; height: 13vh;
+  fill: none; stroke: #fff; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round;
+  filter: drop-shadow(0 0 0.5vh #fff) drop-shadow(0 0 1.4vh var(--neon-purple));
+}
+.h80-villain svg .red { stroke: #ff3b3b; filter: drop-shadow(0 0 0.8vh #ff3b3b); }
+.h80-tag {
+  display: flex; flex-direction: column; gap: 0.5vh;
+  padding: 0.8vh 1vw;
+  border: 0.25vh solid var(--neon-green);
+  box-shadow: 0 0 1.2vh rgba(109, 255, 74, 0.6);
+  background: rgba(7, 0, 13, 0.75);
+}
+.h80-tag b {
+  font-family: "Press Start 2P", monospace; font-weight: 400;
+  font-size: 1.7vh; color: var(--neon-green); text-transform: uppercase;
+  text-shadow: 0 0 1vh var(--neon-green);
+}
+.h80-tag span {
+  font-family: "Barlow", sans-serif; font-weight: 600;
+  font-size: 1.3vh; letter-spacing: 0.12em; text-transform: uppercase; color: #f1d9ff;
+}
+@keyframes h80-villain-in { from { transform: translateX(40vw); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes h80-villain-flicker { 0%, 40%, 44%, 100% { opacity: 1; } 41%, 43% { opacity: 0.2; } 42% { opacity: 0.8; } }
+
+/* low fog rolling across, and eyes blinking in the dark */
+.h80-fog {
+  position: absolute; left: -50%; bottom: 0; width: 200%; height: 26vh;
+  background:
+    radial-gradient(ellipse 18% 60% at 15% 80%, rgba(220, 210, 255, 0.16), transparent 70%),
+    radial-gradient(ellipse 22% 55% at 45% 90%, rgba(220, 210, 255, 0.14), transparent 70%),
+    radial-gradient(ellipse 20% 60% at 75% 85%, rgba(220, 210, 255, 0.16), transparent 70%);
+  animation: h80-fog 26s linear infinite;
+}
+.h80-eyes { position: absolute; width: 3.4vh; height: 1vh; animation: h80-eyes 7s linear infinite; }
+.h80-eyes::before, .h80-eyes::after {
+  content: ""; position: absolute; top: 0; width: 1.1vh; height: 0.7vh; border-radius: 50%;
+  background: #ff2a2a; box-shadow: 0 0 1vh #ff2a2a, 0 0 2vh #ff2a2a;
+}
+.h80-eyes::before { left: 0; } .h80-eyes::after { right: 0; }
+.h80-eyes.e1 { left: 31vw; bottom: 9vh; }
+.h80-eyes.e2 { left: 63vw; bottom: 13vh; animation-delay: -3s; animation-duration: 9s; }
+.h80-eyes.e3 { left: 88vw; bottom: 22vh; animation-delay: -5s; animation-duration: 11s; }
+@keyframes h80-fog { from { transform: translateX(0); } to { transform: translateX(25%); } }
+@keyframes h80-eyes { 0%, 30%, 100% { opacity: 0; } 34%, 60%, 64%, 80% { opacity: 1; } 62% { opacity: 0; } 84% { opacity: 0; } }
