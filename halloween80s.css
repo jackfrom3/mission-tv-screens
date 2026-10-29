@@ -163,11 +163,9 @@ h1 {
   animation: h80-villain-in 1.4s ease-out both, h80-villain-flicker 5s linear 1.4s infinite;
 }
 .h80-villain svg {
-  width: 13vh; height: 13vh;
-  fill: none; stroke: #fff; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round;
-  filter: drop-shadow(0 0 0.5vh #fff) drop-shadow(0 0 1.4vh var(--neon-purple));
+  width: 12vh; height: 14vh;
+  filter: drop-shadow(0 0 0.6vh rgba(255, 255, 255, 0.5)) drop-shadow(0 0 1.6vh var(--neon-purple));
 }
-.h80-villain svg .red { stroke: #ff3b3b; filter: drop-shadow(0 0 0.8vh #ff3b3b); }
 .h80-tag {
   display: flex; flex-direction: column; gap: 0.5vh;
   padding: 0.8vh 1vw;
