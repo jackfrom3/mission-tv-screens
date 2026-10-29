@@ -24,6 +24,25 @@
   var i = 0;
   var frame = document.getElementById("stage");
 
+  // THEME: Halloween 80s look on every screen until Mon 11/2/2026 (turns itself off after).
+  var THEME_UNTIL = new Date("2026-11-02T00:00:00-08:00");
+  frame.onload = function () {
+    if (new Date() >= THEME_UNTIL) return;
+    try {
+      var d = frame.contentDocument;
+      var link = d.createElement("link");
+      link.rel = "stylesheet";
+      link.href = "halloween80s.css?_r=" + Date.now();
+      d.head.appendChild(link);
+      var fx = d.createElement("div");
+      fx.className = "h80-fx";
+      fx.innerHTML = '<div class="h80-flash"></div><div class="h80-scan"></div>' +
+        '<div class="h80-bat">🦇</div><div class="h80-bat b2">🦇</div><div class="h80-bat b3">🦇</div>' +
+        '<div class="h80-ghost">👻</div><div class="h80-pumpkin">🎃</div>';
+      d.body.appendChild(fx);
+    } catch (e) {}
+  };
+
   function show(index) {
     frame.src = screens[index] + "?_r=" + Date.now();
   }

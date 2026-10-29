@@ -1,0 +1,157 @@
+/* Halloween 80s theme — layered on every screen by rotator_current.html until Mon 11/2/2026.
+   Delete this file + the THEME block in the rotator to retire it (the rotator also stops on its own). */
+@import url("https://fonts.googleapis.com/css2?family=Monoton&family=Press+Start+2P&display=block");
+
+:root {
+  --ground: #12001f;
+  --ground-2: #2a0638;
+  --ground-3: #07000d;
+  --hairline: rgba(255, 122, 24, 0.45);
+  --accent: #ff8a1f;
+  --accent-dim: rgba(255, 138, 31, 0.6);
+  --ink: #ffffff;
+  --ink-muted: #f1d9ff;
+  --neon-orange: #ff7a18;
+  --neon-purple: #c14bff;
+  --neon-green: #6dff4a;
+  --neon-pink: #ff3fd0;
+}
+
+.stage {
+  background:
+    radial-gradient(ellipse at 50% 115%, rgba(255, 63, 208, 0.35) 0%, transparent 55%),
+    linear-gradient(180deg, #12001f 0%, #2a0638 55%, #07000d 100%) !important;
+  overflow: hidden;
+  animation: h80-frame 4s ease-in-out infinite;
+  box-shadow: inset 0 0 0 0.5vh var(--neon-orange), inset 0 0 4vh rgba(255, 122, 24, 0.5);
+}
+.stage > * { position: relative; z-index: 2; }
+
+/* retro sun sinking behind the grid */
+.stage::before {
+  content: "";
+  position: absolute; z-index: 0;
+  left: 50%; bottom: 14vh;
+  width: 46vh; height: 46vh; margin-left: -23vh;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #ffe14a 0%, #ff7a18 45%, #ff3fd0 100%);
+  -webkit-mask: repeating-linear-gradient(180deg, #000 0 2.6vh, transparent 2.6vh 3.4vh);
+          mask: repeating-linear-gradient(180deg, #000 0 2.6vh, transparent 2.6vh 3.4vh);
+  opacity: 0.22;
+  filter: blur(0.15vh);
+  animation: h80-sun 6s ease-in-out infinite;
+}
+
+/* neon perspective grid floor, scrolling toward the viewer */
+.stage::after {
+  content: "";
+  position: absolute; z-index: 1;
+  left: -50%; right: -50%; bottom: -2vh; height: 34vh;
+  background-image:
+    linear-gradient(rgba(193, 75, 255, 0.55) 0.25vh, transparent 0.25vh),
+    linear-gradient(90deg, rgba(193, 75, 255, 0.55) 0.25vh, transparent 0.25vh);
+  background-size: 8vh 8vh;
+  transform: perspective(30vh) rotateX(62deg);
+  transform-origin: bottom;
+  -webkit-mask: linear-gradient(0deg, #000 30%, transparent 100%);
+          mask: linear-gradient(0deg, #000 30%, transparent 100%);
+  opacity: 0.55;
+  animation: h80-grid 1.6s linear infinite;
+  pointer-events: none;
+}
+
+/* headline: neon tube sign with an occasional flicker */
+h1 {
+  color: #fff !important;
+  text-shadow:
+    0 0 0.4vh #fff,
+    0 0 1.2vh var(--neon-orange),
+    0 0 2.6vh var(--neon-orange),
+    0 0 5vh var(--neon-pink);
+  animation: h80-flicker 7s linear infinite;
+}
+
+.eyebrow-kicker, .round-label, .metric-name, .meta {
+  color: var(--neon-orange) !important;
+  text-shadow: 0 0 1vh rgba(255, 122, 24, 0.85);
+}
+.eyebrow-kicker::after {
+  content: "  ★ HALLOWEEN '86 ★";
+  font-family: "Press Start 2P", monospace;
+  font-size: 0.75em;
+  letter-spacing: 0.1em;
+  color: var(--neon-green);
+  text-shadow: 0 0 1vh var(--neon-green);
+  animation: h80-blink 1.2s steps(2, start) infinite;
+}
+.mark { color: var(--neon-orange) !important; filter: drop-shadow(0 0 0.8vh var(--neon-orange)); }
+
+.num, .tag {
+  color: var(--neon-green) !important;
+  text-shadow: 0 0 1.2vh rgba(109, 255, 74, 0.9);
+}
+
+/* bracket: winners pulse, champion box glows */
+.slot.winner { text-shadow: 0 0 0.6vh rgba(255, 122, 24, 0.7); }
+.final .slot { animation: h80-pulse 1.8s ease-in-out infinite; }
+.champion-box { box-shadow: 0 0 2vh var(--neon-orange), inset 0 0 2vh rgba(255, 122, 24, 0.4); }
+
+/* full-screen extras added by the rotator */
+.h80-fx { position: fixed; inset: 0; pointer-events: none; z-index: 50; overflow: hidden; }
+.h80-scan {
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(180deg, rgba(0, 0, 0, 0.18) 0 2px, transparent 2px 4px);
+  animation: h80-roll 8s linear infinite;
+}
+.h80-flash {
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at 50% 30%, rgba(193, 75, 255, 0.35), transparent 60%);
+  opacity: 0;
+  animation: h80-lightning 9s linear infinite;
+}
+.h80-bat {
+  position: absolute; top: 10vh; left: -10vw;
+  font-size: 5vh;
+  filter: drop-shadow(0 0 1vh var(--neon-purple));
+  animation: h80-fly 14s linear infinite;
+}
+.h80-bat.b2 { top: 22vh; font-size: 3.6vh; animation-duration: 19s; animation-delay: -7s; }
+.h80-bat.b3 { top: 6vh; font-size: 3vh; animation-duration: 23s; animation-delay: -15s; }
+.h80-pumpkin {
+  position: absolute; right: 3vw; top: 2.5vh;
+  font-size: 7vh;
+  filter: drop-shadow(0 0 2vh var(--neon-orange));
+  animation: h80-bob 2.4s ease-in-out infinite;
+}
+.h80-ghost {
+  position: absolute; right: 10vw; top: 3vh;
+  font-size: 5.5vh;
+  opacity: 0.85;
+  filter: drop-shadow(0 0 1.6vh #fff);
+  animation: h80-ghost 6s ease-in-out infinite;
+}
+
+@keyframes h80-grid { from { background-position: 0 0; } to { background-position: 0 8vh; } }
+@keyframes h80-sun { 0%, 100% { opacity: 0.18; } 50% { opacity: 0.3; } }
+@keyframes h80-frame {
+  0%, 100% { box-shadow: inset 0 0 0 0.5vh var(--neon-orange), inset 0 0 4vh rgba(255, 122, 24, 0.5); }
+  50% { box-shadow: inset 0 0 0 0.5vh var(--neon-purple), inset 0 0 4vh rgba(193, 75, 255, 0.6); }
+}
+@keyframes h80-flicker {
+  0%, 18%, 22%, 24%, 60%, 100% { opacity: 1; }
+  19%, 23% { opacity: 0.35; }
+  61% { opacity: 0.7; }
+}
+@keyframes h80-blink { to { visibility: hidden; } }
+@keyframes h80-pulse { 0%, 100% { text-shadow: 0 0 0.6vh rgba(255, 122, 24, 0.6); } 50% { text-shadow: 0 0 2vh var(--neon-orange), 0 0 3vh var(--neon-pink); } }
+@keyframes h80-roll { from { background-position: 0 0; } to { background-position: 0 100vh; } }
+@keyframes h80-lightning { 0%, 88%, 92%, 100% { opacity: 0; } 89%, 91% { opacity: 1; } 90% { opacity: 0.2; } }
+@keyframes h80-fly {
+  0% { transform: translate(0, 0) scaleX(1); }
+  25% { transform: translate(30vw, 4vh); }
+  50% { transform: translate(60vw, -2vh); }
+  75% { transform: translate(90vw, 5vh); }
+  100% { transform: translate(125vw, 0); }
+}
+@keyframes h80-bob { 0%, 100% { transform: translateY(0) rotate(-6deg); } 50% { transform: translateY(-1.2vh) rotate(6deg); } }
+@keyframes h80-ghost { 0%, 100% { transform: translate(0, 0); opacity: 0.25; } 50% { transform: translate(1vw, -3vh); opacity: 0.85; } }
