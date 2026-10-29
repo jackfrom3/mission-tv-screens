@@ -106,14 +106,6 @@ h1 {
   opacity: 0;
   animation: h80-lightning 9s linear infinite;
 }
-.h80-bat {
-  position: absolute; top: 10vh; left: -10vw;
-  font-size: 5vh;
-  filter: drop-shadow(0 0 1vh var(--neon-purple));
-  animation: h80-fly 14s linear infinite;
-}
-.h80-bat.b2 { top: 22vh; font-size: 3.6vh; animation-duration: 19s; animation-delay: -7s; }
-.h80-bat.b3 { top: 6vh; font-size: 3vh; animation-duration: 23s; animation-delay: -15s; }
 .h80-pumpkin {
   position: absolute; right: 2.4vw; top: 1.8vh;
   width: 11vh; height: 10vh;
@@ -146,13 +138,6 @@ h1 {
 @keyframes h80-pulse { 0%, 100% { text-shadow: 0 0 0.6vh rgba(255, 122, 24, 0.6); } 50% { text-shadow: 0 0 2vh var(--neon-orange), 0 0 3vh var(--neon-pink); } }
 @keyframes h80-roll { from { background-position: 0 0; } to { background-position: 0 100vh; } }
 @keyframes h80-lightning { 0%, 88%, 92%, 100% { opacity: 0; } 89%, 91% { opacity: 1; } 90% { opacity: 0.2; } }
-@keyframes h80-fly {
-  0% { transform: translate(0, 0) scaleX(1); }
-  25% { transform: translate(30vw, 4vh); }
-  50% { transform: translate(60vw, -2vh); }
-  75% { transform: translate(90vw, 5vh); }
-  100% { transform: translate(125vw, 0); }
-}
 @keyframes h80-bob { 0%, 100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-0.8vh) rotate(3deg); } }
 @keyframes h80-ghost { 0%, 100% { transform: translate(0, 0); opacity: 0.25; } 50% { transform: translate(1vw, -3vh); opacity: 0.85; } }
 
@@ -205,3 +190,22 @@ h1 {
 .h80-eyes.e3 { left: 88vw; bottom: 22vh; animation-delay: -5s; animation-duration: 11s; }
 @keyframes h80-fog { from { transform: translateX(0); } to { transform: translateX(25%); } }
 @keyframes h80-eyes { 0%, 30%, 100% { opacity: 0; } 34%, 60%, 64%, 80% { opacity: 1; } 62% { opacity: 0; } 84% { opacity: 0; } }
+
+/* dark bats crossing the moon every so often (moon sits around 76vw / 59vh) */
+.h80-moonbat {
+  position: absolute; left: 58vw; top: 62vh;
+  width: 8vh; opacity: 0;
+  animation: h80-moonbat 13s linear infinite;
+}
+.h80-moonbat.m2 { width: 6vh; top: 54vh; animation-delay: 0.6s; }
+.h80-moonbat.m3 { width: 4.5vh; top: 66vh; animation-delay: 1.3s; }
+.h80-moonbat svg { width: 100%; display: block; fill: #07000d; }
+.h80-flap { animation: h80-flap 0.22s ease-in-out infinite alternate; transform-origin: center 35%; }
+@keyframes h80-flap { from { transform: scaleY(1); } to { transform: scaleY(0.5); } }
+@keyframes h80-moonbat {
+  0% { opacity: 0; transform: translate(0, 0); }
+  2% { opacity: 1; }
+  10% { transform: translate(18vw, -6vh); }
+  20% { opacity: 1; transform: translate(38vw, 2vh); }
+  22%, 100% { opacity: 0; transform: translate(42vw, 0); }
+}
