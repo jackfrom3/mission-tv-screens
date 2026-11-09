@@ -219,6 +219,17 @@
     color: var(--ink-muted);
   }
 
+  .quarters .slot.winner, .semis .slot.winner, .final .slot.winner {
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .slot.loser {
+    color: rgba(255,255,255,0.3);
+    text-decoration: line-through;
+    font-weight: 500;
+  }
+
   .champion-col {
     flex: 0 0 11vw;
     display: flex;
@@ -295,23 +306,23 @@
     <div class="round round-seed">
       <div class="round-label">Round of 16</div>
       <div class="round-body">
-        <div class="match"><div class="slot">Turkey</div><div class="slot">Mashed Potatoes</div></div>
-        <div class="match"><div class="slot">Stuffing</div><div class="slot">Gravy</div></div>
-        <div class="match"><div class="slot">Cranberry Sauce</div><div class="slot">Ham</div></div>
-        <div class="match"><div class="slot">Mac and Cheese</div><div class="slot">Sweet Potato Casserole</div></div>
-        <div class="match"><div class="slot">Dinner Rolls</div><div class="slot">Green Bean Casserole</div></div>
-        <div class="match"><div class="slot">Pecan Pie</div><div class="slot">Deviled Eggs</div></div>
-        <div class="match"><div class="slot">Creamed Corn</div><div class="slot">Pumpkin Pie</div></div>
-        <div class="match"><div class="slot">Brussels Sprouts</div><div class="slot">Apple Pie</div></div>
+        <div class="match"><div class="slot loser">Turkey</div><div class="slot winner">Mashed Potatoes</div></div>
+        <div class="match"><div class="slot winner">Stuffing</div><div class="slot loser">Gravy</div></div>
+        <div class="match"><div class="slot loser">Cranberry Sauce</div><div class="slot winner">Ham</div></div>
+        <div class="match"><div class="slot winner">Mac and Cheese</div><div class="slot loser">Sweet Potato Casserole</div></div>
+        <div class="match"><div class="slot winner">Dinner Rolls</div><div class="slot loser">Green Bean Casserole</div></div>
+        <div class="match"><div class="slot winner">Pecan Pie</div><div class="slot loser">Deviled Eggs</div></div>
+        <div class="match"><div class="slot loser">Creamed Corn</div><div class="slot winner">Pumpkin Pie</div></div>
+        <div class="match"><div class="slot loser">Brussels Sprouts</div><div class="slot winner">Apple Pie</div></div>
       </div>
     </div>
     <div class="round quarters">
       <div class="round-label">Quarterfinals</div>
       <div class="round-body">
-        <div class="match"><div class="slot">&nbsp;</div><div class="slot">&nbsp;</div></div>
-        <div class="match"><div class="slot">&nbsp;</div><div class="slot">&nbsp;</div></div>
-        <div class="match"><div class="slot">&nbsp;</div><div class="slot">&nbsp;</div></div>
-        <div class="match"><div class="slot">&nbsp;</div><div class="slot">&nbsp;</div></div>
+        <div class="match"><div class="slot">Mashed Potatoes</div><div class="slot">Stuffing</div></div>
+        <div class="match"><div class="slot">Ham</div><div class="slot">Mac and Cheese</div></div>
+        <div class="match"><div class="slot">Dinner Rolls</div><div class="slot">Pecan Pie</div></div>
+        <div class="match"><div class="slot">Pumpkin Pie</div><div class="slot">Apple Pie</div></div>
       </div>
     </div>
     <div class="round semis">
