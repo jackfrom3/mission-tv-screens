@@ -25,20 +25,31 @@
   var SECONDS_PER_SCREEN = 18;
   var i = 0;
 
-  // THEME: Halloween 80s look on every screen until Mon 11/2/2026 (turns itself off after).
-  var THEME_UNTIL = new Date("2026-11-02T00:00:00-08:00");
-  if (new Date() < THEME_UNTIL) document.body.style.background = "#12001f";
+  // THEME: Thanksgiving harvest look on every screen until Mon 11/30/2026 (turns itself off after).
+  var THEME_UNTIL = new Date("2026-11-30T00:00:00-08:00");
+  if (new Date() < THEME_UNTIL) document.body.style.background = "#2a0f08";
   var THEME_VERSION = Date.now() - Date.now() % 3600000; // re-fetch the theme at most hourly
-  // One horror villain per screen: real convention cosplay photos from Wikimedia Commons
-  // (free licenses, credited on screen). Files live in villains/.
-  var VILLAINS = [
-    { name: "Jason", film: "Friday the 13th · 1980", img: "jason", credit: "Photo: Rich.S. · CC BY 2.0" },
-    { name: "Freddy", film: "A Nightmare on Elm Street · 1984", img: "freddy", credit: "Photo: Sue Lukenbaugh · CC BY-SA 2.0, cropped" },
-    { name: "Michael Myers", film: "Halloween · 1978", img: "michael", credit: "Photo: Facundobidegay · CC0" },
-    { name: "Leatherface", film: "The Texas Chain Saw Massacre · 1974", img: "leatherface", credit: "Photo: Clinton Steeds · CC BY 2.0" },
-    { name: "Pennywise", film: "It · 1990", img: "pennywise", credit: "Photo: Pikawil · CC BY-SA 2.0, cropped" },
-    { name: "Ghostface", film: "Scream · 1996", img: "ghostface", credit: "Photo: Stéphane Gallay · CC BY 2.0" }
-  ];
+  // One "thankful for" sign per screen.
+  var THANKFUL = ["Early lifts", "Good sleep", "Teammates", "New PRs", "Rest days", "Second helpings"];
+  var LEAF_COLORS = ["#d9541e", "#f0a020", "#a3243b", "#c97a1a", "#e2b33c", "#b8441a", "#8f2a1c", "#e07b28"];
+  var LEAF = '<svg viewBox="0 0 40 44"><path fill="C" d="M20 2l3 8 6-4-1 8 8-1-4 6 6 3-8 3 3 7-8-3-2 8-3-7-3 7-2-8-8 3 3-7-8-3 6-3-4-6 8 1-1-8 6 4z"/><path d="M20 12v30" stroke="#3a1608" stroke-width="1.4" fill="none" opacity=".6"/></svg>';
+  var TURKEY = '<svg viewBox="0 0 200 180"><g class="tg-tail">' +
+    '<g stroke="#2a0f08" stroke-width="2">' +
+    '<ellipse cx="100" cy="60" rx="16" ry="52" fill="#a3243b" transform="rotate(-75 100 120)"/>' +
+    '<ellipse cx="100" cy="60" rx="16" ry="52" fill="#f0a020" transform="rotate(-50 100 120)"/>' +
+    '<ellipse cx="100" cy="60" rx="16" ry="52" fill="#d9541e" transform="rotate(-25 100 120)"/>' +
+    '<ellipse cx="100" cy="60" rx="16" ry="52" fill="#a3243b" transform="rotate(0 100 120)"/>' +
+    '<ellipse cx="100" cy="60" rx="16" ry="52" fill="#d9541e" transform="rotate(25 100 120)"/>' +
+    '<ellipse cx="100" cy="60" rx="16" ry="52" fill="#f0a020" transform="rotate(50 100 120)"/>' +
+    '<ellipse cx="100" cy="60" rx="16" ry="52" fill="#a3243b" transform="rotate(75 100 120)"/></g></g>' +
+    '<path d="M80 168l-4 10M76 178h-8M76 178l2 -2M120 168l4 10M124 178h8" stroke="#f0a020" stroke-width="4" stroke-linecap="round"/>' +
+    '<ellipse cx="100" cy="128" rx="38" ry="42" fill="#6b3a1e" stroke="#2a0f08" stroke-width="2"/>' +
+    '<ellipse cx="100" cy="138" rx="24" ry="26" fill="#8a4f28"/>' +
+    '<circle cx="100" cy="82" r="22" fill="#7a4524" stroke="#2a0f08" stroke-width="2"/>' +
+    '<circle cx="92" cy="78" r="5" fill="#fff"/><circle cx="108" cy="78" r="5" fill="#fff"/>' +
+    '<circle cx="93" cy="79" r="2.6" fill="#111"/><circle cx="107" cy="79" r="2.6" fill="#111"/>' +
+    '<path d="M94 88l6 10 6-10z" fill="#ffc65c" stroke="#2a0f08" stroke-width="1.2"/>' +
+    '<path d="M104 92q8 4 4 16q-8 -2 -6 -12z" fill="#c8243b"/></svg>';
   // Dresses up a loaded screen, then calls done() once the theme stylesheet is in.
   function theme(frame, idx, done) {
     if (new Date() >= THEME_UNTIL) return done();
@@ -46,31 +57,24 @@
       var d = frame.contentDocument;
       var link = d.createElement("link");
       link.rel = "stylesheet";
-      link.href = "halloween80s.css?v=" + THEME_VERSION;
-      var waiting = 2; // stylesheet + villain photo
-      var ready = function () { if (--waiting === 0) done(); };
-      link.onload = link.onerror = ready;
+      link.href = "thanksgiving.css?v=" + THEME_VERSION;
+      link.onload = link.onerror = function () { done(); };
       setTimeout(done, 2500);
       d.head.appendChild(link);
-      var fx = d.createElement("div");
-      fx.className = "h80-fx";
-      fx.innerHTML = '<div class="h80-border"></div><div class="h80-flash"></div><div class="h80-scan"></div>' +
-                '<div class="h80-spider"><div class="h80-thread"></div><svg viewBox="0 0 80 70"><g fill="none" stroke="#0a0a0a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M32 30L14 18 4 26M30 34L10 32 2 42M30 38L12 46 6 58M33 42L20 56 18 68"/><path d="M48 30L66 18 76 26M50 34L70 32 78 42M50 38L68 46 74 58M47 42L60 56 62 68"/></g><ellipse cx="40" cy="44" rx="11" ry="13" fill="#111"/><circle cx="40" cy="28" r="7" fill="#151515"/><circle cx="37" cy="27" r="1.4" fill="#ff2a2a"/><circle cx="43" cy="27" r="1.4" fill="#ff2a2a"/><path d="M36 42l4 6 4-6-4 3z" fill="#7a1010"/></svg></div>' +
-        '<div class="h80-pumpkin"><svg viewBox="0 0 200 180"><defs><radialGradient id="pk" cx="45%" cy="40%" r="65%"><stop offset="0" stop-color="#ffa340"/><stop offset=".55" stop-color="#e86a10"/><stop offset="1" stop-color="#8a3204"/></radialGradient><radialGradient id="pkr" cx="50%" cy="45%" r="60%"><stop offset="0" stop-color="#ff9a30"/><stop offset=".7" stop-color="#d45a0a"/><stop offset="1" stop-color="#6e2803"/></radialGradient><linearGradient id="st" x1="0" x2="1"><stop offset="0" stop-color="#3d4a1c"/><stop offset=".5" stop-color="#6b7a33"/><stop offset="1" stop-color="#2c3512"/></linearGradient><radialGradient id="fire" cx="50%" cy="60%" r="60%"><stop offset="0" stop-color="#fff6c0"/><stop offset=".4" stop-color="#ffd23a"/><stop offset="1" stop-color="#ff7a00"/></radialGradient></defs><ellipse cx="100" cy="170" rx="80" ry="8" fill="#000" opacity=".45"/><ellipse cx="44" cy="104" rx="40" ry="62" fill="url(#pkr)"/><ellipse cx="156" cy="104" rx="40" ry="62" fill="url(#pkr)"/><ellipse cx="70" cy="102" rx="42" ry="68" fill="url(#pk)"/><ellipse cx="130" cy="102" rx="42" ry="68" fill="url(#pk)"/><ellipse cx="100" cy="100" rx="40" ry="70" fill="url(#pk)"/><g fill="none" stroke="#7a2c03" stroke-width="2" opacity=".55"><path d="M100 32q-14 68 0 138M100 32q14 68 0 138M62 38q-22 64 4 128M138 38q22 64-4 128"/></g><ellipse cx="78" cy="62" rx="10" ry="22" fill="#fff" opacity=".18" transform="rotate(-20 78 62)"/><path d="M94 38q-2-18 4-30q4-6 10-4l2 6q-6 4-6 12l-2 16z" fill="url(#st)"/><path d="M108 10q14-4 22 6" fill="none" stroke="#4d5a22" stroke-width="3" stroke-linecap="round"/><g class="h80-candle" fill="url(#fire)"><path d="M56 82l22-4-10 22z"/><path d="M144 82l-22-4 10 22z"/><path d="M100 98l-8 16h16z"/><path d="M48 120q52 38 104 0l-8 2-6 12-10-8-8 12-10-10-10 10-8-12-10 8-6-12z"/></g></svg></div>';
       var back = d.createElement("div");
-      back.className = "h80-fx h80-back";
-      back.innerHTML = '<div class="h80-fog"></div>' +
-        '<div class="h80-eyes e1"></div><div class="h80-eyes e2"></div><div class="h80-eyes e3"></div>' +
-        '<div class="h80-moonbat"><div class="h80-flap"><svg viewBox="0 0 100 40"><path d="M50 14c-2-6-6-6-6-6l2 6c-8-2-14-12-34-10 6 4 6 10 2 14 6-2 10 0 12 6 4-4 10-4 14 0 2-4 6-6 10-4 4-2 8 0 10 4 4-4 10-4 14 0 2-6 6-8 12-6-4-4-4-10 2-14-20-2-26 8-34 10l2-6s-4 0-6 6z"/></svg></div></div>' +
-        '<div class="h80-moonbat m2"><div class="h80-flap"><svg viewBox="0 0 100 40"><path d="M50 14c-2-6-6-6-6-6l2 6c-8-2-14-12-34-10 6 4 6 10 2 14 6-2 10 0 12 6 4-4 10-4 14 0 2-4 6-6 10-4 4-2 8 0 10 4 4-4 10-4 14 0 2-6 6-8 12-6-4-4-4-10 2-14-20-2-26 8-34 10l2-6s-4 0-6 6z"/></svg></div></div>' +
-        '<div class="h80-moonbat m3"><div class="h80-flap"><svg viewBox="0 0 100 40"><path d="M50 14c-2-6-6-6-6-6l2 6c-8-2-14-12-34-10 6 4 6 10 2 14 6-2 10 0 12 6 4-4 10-4 14 0 2-4 6-6 10-4 4-2 8 0 10 4 4-4 10-4 14 0 2-6 6-8 12-6-4-4-4-10 2-14-20-2-26 8-34 10l2-6s-4 0-6 6z"/></svg></div></div>';
+      back.className = "tg-fx tg-back";
+      var leaves = "";
+      for (var k = 1; k <= 8; k++) {
+        leaves += '<div class="tg-leaf l' + k + '">' + LEAF.replace("C", LEAF_COLORS[(k + idx) % LEAF_COLORS.length]) + '</div>';
+      }
+      back.innerHTML = leaves;
       d.body.appendChild(back);
-      var v = VILLAINS[idx % VILLAINS.length];
-      fx.innerHTML += '<div class="h80-villain"><img src="villains/' + v.img + '.webp" alt="">' +
-        '<div class="h80-tag"><b>' + v.name + '</b><span>' + v.film + '</span><i>' + v.credit + '</i></div></div>';
+      var fx = d.createElement("div");
+      fx.className = "tg-fx";
+      fx.innerHTML = '<div class="tg-border"></div>' +
+        '<div class="tg-turkey">' + TURKEY + '</div>' +
+        '<div class="tg-sign"><span>Thankful for</span><b>' + THANKFUL[idx % THANKFUL.length] + '</b></div>';
       d.body.appendChild(fx);
-      var pic = fx.querySelector(".h80-villain img");
-      if (pic.complete) ready(); else pic.onload = pic.onerror = ready;
     } catch (e) { done(); }
   }
 

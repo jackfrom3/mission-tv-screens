@@ -1,0 +1,136 @@
+/* Thanksgiving harvest theme — layered on every screen by rotator_current.html until Mon 11/30/2026.
+   Same pattern as halloween80s.css: one CSS file + the THEME block in the rotator (it stops on its own). */
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=block");
+
+:root {
+  --ground: #2a0f08;
+  --ground-2: #4a1a0c;
+  --ground-3: #160704;
+  --hairline: rgba(255, 179, 71, 0.45);
+  --accent: #ffb347;
+  --accent-dim: rgba(255, 179, 71, 0.6);
+  --ink: #ffffff;
+  --ink-muted: #ffe8cc;
+  --gold: #ffc65c;
+  --pumpkin: #f08a24;
+  --cranberry: #a3243b;
+}
+
+.stage {
+  background:
+    radial-gradient(ellipse at 75% 110%, rgba(240, 138, 36, 0.35) 0%, transparent 55%),
+    linear-gradient(180deg, #2a0f08 0%, #4a1a0c 55%, #160704 100%) !important;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 0.5vh var(--pumpkin), inset 0 0 4vh rgba(240, 138, 36, 0.45);
+}
+.stage > * { position: relative; z-index: 2; }
+
+/* harvest sunset over the farm: barn + silo, cornstalks on both edges, pumpkins in the field */
+.stage::before {
+  content: "";
+  position: absolute; z-index: 0;
+  left: 0; right: 0; bottom: 0; height: 58vh;
+  background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNjAwIDUwMCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNYXggc2xpY2UiPgo8ZGVmcz4KPHJhZGlhbEdyYWRpZW50IGlkPSJzdW4iIGN4PSI1MCUiIGN5PSI1MCUiIHI9IjUwJSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZmZlMmEwIi8+PHN0b3Agb2Zmc2V0PSIuNTUiIHN0b3AtY29sb3I9IiNmZmIzNDciLz48c3RvcCBvZmZzZXQ9Ii44IiBzdG9wLWNvbG9yPSIjZjA4YTI0Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZjA4YTI0IiBzdG9wLW9wYWNpdHk9IjAiLz48L3JhZGlhbEdyYWRpZW50Pgo8cmFkaWFsR3JhZGllbnQgaWQ9Imdsb3ciIGN4PSI1MCUiIGN5PSI1MCUiIHI9IjUwJSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZmY5YTNjIiBzdG9wLW9wYWNpdHk9Ii41NSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2ZmOWEzYyIgc3RvcC1vcGFjaXR5PSIwIi8+PC9yYWRpYWxHcmFkaWVudD4KPC9kZWZzPgo8Y2lyY2xlIGN4PSIxMjIwIiBjeT0iMjUwIiByPSIyNjAiIGZpbGw9InVybCgjZ2xvdykiLz4KPGNpcmNsZSBjeD0iMTIyMCIgY3k9IjI1MCIgcj0iMTIwIiBmaWxsPSJ1cmwoI3N1bikiLz4KPHBhdGggZD0iTTAgMzYwIFEyMDAgMzAwIDQyMCAzNDAgVDg2MCAzMzAgVDEzMDAgMzIwIFQxNjAwIDMzMCBWNTAwIEgweiIgZmlsbD0iIzRhMWYxMCIvPgo8cGF0aCBkPSJNMCA0MDAgUTI2MCAzNTAgNTIwIDM5MCBUMTA0MCAzODAgVDE2MDAgMzg1IFY1MDAgSDB6IiBmaWxsPSIjMzMxNDBhIi8+CjxnIGZpbGw9IiMzMzE0MGEiPgo8cmVjdCB4PSIxMDEwIiB5PSIyOTAiIHdpZHRoPSIxMjAiIGhlaWdodD0iODAiLz48cGF0aCBkPSJNMTAwMCAyOTIgTDEwNzAgMjQwIEwxMTQwIDI5MnoiLz4KPHJlY3QgeD0iMTEzMCIgeT0iMzEwIiB3aWR0aD0iNjAiIGhlaWdodD0iNjAiLz48cGF0aCBkPSJNMTEyNSAzMTIgTDExNjAgMjg2IEwxMTk1IDMxMnoiLz4KPHJlY3QgeD0iMTE5NiIgeT0iMjUwIiB3aWR0aD0iMzQiIGhlaWdodD0iMTIwIiByeD0iMTciLz48cGF0aCBkPSJNMTE5MyAyNTQgUTEyMTMgMjI4IDEyMzMgMjU0eiIvPgo8L2c+CjxnIGZpbGw9IiMxZjBiMDUiIHN0cm9rZT0iIzFmMGIwNSIgc3Ryb2tlLXdpZHRoPSI1IiBzdHJva2UtbGluZWNhcD0icm91bmQiPgo8cGF0aCBkPSJNNjAgNTAwIEw2MCAzMzAgTTQwIDM4MCBRNjAgMzYwIDYyIDM0NSBNODAgMzcwIFE2MiAzNTUgNjAgMzM1IE0zNiA0MjAgUTU1IDQwMCA2MCAzOTAgTTg2IDQzMCBRNjYgNDEwIDYwIDM5NSIgZmlsbD0ibm9uZSIvPgo8cGF0aCBkPSJNMTIwIDUwMCBMMTE4IDM0NSBNOTggMzk1IFExMTggMzcyIDEyMCAzNTggTTE0MCAzODUgUTEyMiAzNjggMTE4IDM1MCBNMTAwIDQ0MCBRMTE2IDQyMCAxMTkgNDA1IiBmaWxsPSJub25lIi8+CjxwYXRoIGQ9Ik0xODAgNTAwIEwxODIgMzYwIE0xNjAgNDEwIFExODAgMzkwIDE4MiAzNzIgTTIwNCA0MDAgUTE4NiAzODIgMTgyIDM2NiIgZmlsbD0ibm9uZSIvPgo8cGF0aCBkPSJNMjQwIDUwMCBMMjM4IDM4MCBNMjIyIDQyNSBRMjM4IDQwNSAyMzggMzkyIE0yNTggNDIwIFEyNDIgNDA0IDIzOCAzODgiIGZpbGw9Im5vbmUiLz4KPHBhdGggZD0iTTE0MjAgNTAwIEwxNDIyIDM1MCBNMTQwMCA0MDAgUTE0MjAgMzc4IDE0MjIgMzYyIE0xNDQ0IDM5MiBRMTQyNiAzNzIgMTQyMiAzNTYgTTE0MDIgNDQ1IFExNDE4IDQyNSAxNDIxIDQxMCIgZmlsbD0ibm9uZSIvPgo8cGF0aCBkPSJNMTQ5MCA1MDAgTDE0ODggMzM1IE0xNDY4IDM4NSBRMTQ4OCAzNjIgMTQ4OSAzNDYgTTE1MTIgMzc4IFExNDkyIDM1OCAxNDg4IDM0MCBNMTQ3MCA0MzAgUTE0ODYgNDEyIDE0ODggMzk4IiBmaWxsPSJub25lIi8+CjxwYXRoIGQ9Ik0xNTU1IDUwMCBMMTU1NyAzNTUgTTE1MzYgNDA1IFExNTU1IDM4NCAxNTU3IDM2OCBNMTU3OCAzOTggUTE1NjAgMzgwIDE1NTcgMzYyIiBmaWxsPSJub25lIi8+CjwvZz4KPGcgZmlsbD0iIzFmMGIwNSI+PGVsbGlwc2UgY3g9IjYyIiBjeT0iMzMyIiByeD0iNiIgcnk9IjE2Ii8+PGVsbGlwc2UgY3g9IjExOCIgY3k9IjM0MiIgcng9IjYiIHJ5PSIxNiIvPjxlbGxpcHNlIGN4PSIxODIiIGN5PSIzNTciIHJ4PSI1IiByeT0iMTQiLz48ZWxsaXBzZSBjeD0iMTQyMiIgY3k9IjM0NyIgcng9IjYiIHJ5PSIxNiIvPjxlbGxpcHNlIGN4PSIxNDg4IiBjeT0iMzMyIiByeD0iNiIgcnk9IjE2Ii8+PGVsbGlwc2UgY3g9IjE1NTciIGN5PSIzNTIiIHJ4PSI1IiByeT0iMTQiLz48L2c+CjxnIGZpbGw9IiMxZjBiMDUiPjxwYXRoIGQ9Ik02MDAgNDcwIHEzMCAtNDAgNjAgMHoiLz48cGF0aCBkPSJNNjQwIDQ2OCBxMjIgLTMyIDQ0IDB6Ii8+PGVsbGlwc2UgY3g9Ijc2MCIgY3k9IjQ3MCIgcng9IjM0IiByeT0iMjIiLz48cGF0aCBkPSJNNzYwIDQ0OCBsNCAtMTQgNiAyIC00IDEzeiIvPjxlbGxpcHNlIGN4PSI4MzAiIGN5PSI0NzQiIHJ4PSIyNCIgcnk9IjE2Ii8+PC9nPgo8L3N2Zz4K") center bottom / cover no-repeat;
+  opacity: 0.6;
+  pointer-events: none;
+}
+.stage::after { content: none !important; }
+
+/* headline: warm candle-light glow */
+h1 {
+  color: #fff !important;
+  text-shadow: 0 0 0.4vh #fff3d6, 0 0 1.4vh var(--gold), 0 0 3.4vh var(--pumpkin);
+}
+
+.eyebrow-kicker, .round-label, .metric-name, .meta {
+  color: var(--gold) !important;
+  text-shadow: 0 0 1vh rgba(255, 179, 71, 0.6);
+}
+.eyebrow-kicker::after {
+  content: "   Happy Thanksgiving";
+  font-family: "Lobster", cursive;
+  font-size: 1.15em;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: #ffe2a0;
+  text-shadow: 0 0 1vh rgba(255, 179, 71, 0.8);
+}
+.mark { color: var(--gold) !important; filter: drop-shadow(0 0 0.8vh var(--pumpkin)); }
+
+.num, .tag {
+  color: var(--gold) !important;
+  text-shadow: 0 0 1vh rgba(255, 198, 92, 0.7);
+}
+
+.slot.winner { text-shadow: 0 0 0.6vh rgba(255, 179, 71, 0.7); }
+.final .slot { text-shadow: 0 0 1.4vh var(--pumpkin); }
+.champion-box { box-shadow: 0 0 2vh var(--pumpkin), inset 0 0 2vh rgba(240, 138, 36, 0.4); }
+
+/* full-screen extras added by the rotator */
+.tg-fx { position: fixed; inset: 0; pointer-events: none; z-index: 50; overflow: hidden; }
+.tg-fx.tg-back { z-index: 1; } /* leaves fall behind the text */
+.tg-border {
+  position: absolute; inset: 0;
+  box-shadow: inset 0 0 0 0.5vh var(--gold), inset 0 0 4vh rgba(255, 198, 92, 0.45);
+  animation: tg-border 5s ease-in-out infinite alternate;
+}
+@keyframes tg-border { from { opacity: 0; } to { opacity: 1; } }
+
+/* turkey, top right, bobs and fans his tail */
+.tg-turkey {
+  position: absolute; right: 2.2vw; top: 1.2vh;
+  width: 13vh; height: 12vh;
+  filter: drop-shadow(0 0 1.2vh rgba(255, 179, 71, 0.55));
+  animation: tg-bob 2.6s ease-in-out infinite;
+}
+.tg-turkey svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.tg-tail { transform-origin: 100px 120px; animation: tg-fan 2.6s ease-in-out infinite; }
+@keyframes tg-bob { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-0.8vh) rotate(2deg); } }
+@keyframes tg-fan { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+
+/* "thankful for" sign, one per screen, slides in next to the turkey */
+.tg-sign {
+  position: absolute; right: 11vw; top: 2.4vh;
+  display: flex; flex-direction: column; gap: 0.4vh;
+  padding: 1vh 1.4vw;
+  border: 0.25vh solid var(--gold);
+  border-radius: 0.6vh;
+  background: rgba(22, 7, 4, 0.8);
+  box-shadow: 0 0 1.4vh rgba(255, 179, 71, 0.45);
+  animation: tg-sign-in 1.2s ease-out both;
+}
+.tg-sign span {
+  font-family: "Barlow", sans-serif; font-weight: 600;
+  font-size: 1.3vh; letter-spacing: 0.16em; text-transform: uppercase; color: #ffe8cc;
+}
+.tg-sign b {
+  font-family: "Lobster", cursive; font-weight: 400;
+  font-size: 2.8vh; color: var(--gold);
+  text-shadow: 0 0 1vh rgba(255, 179, 71, 0.6);
+}
+@keyframes tg-sign-in { from { transform: translateX(30vw); opacity: 0; } to { transform: none; opacity: 1; } }
+
+/* falling leaves */
+.tg-leaf { position: absolute; top: -10vh; width: 6vh; opacity: 0.85; animation: tg-fall linear infinite; }
+.tg-leaf svg { width: 100%; display: block; animation: tg-spin ease-in-out infinite alternate; }
+.tg-leaf.l1 { left: 4vw;  animation-duration: 14s; animation-delay: -2s; }
+.tg-leaf.l2 { left: 16vw; animation-duration: 18s; animation-delay: -9s;  width: 4.6vh; }
+.tg-leaf.l3 { left: 29vw; animation-duration: 16s; animation-delay: -5s; }
+.tg-leaf.l4 { left: 42vw; animation-duration: 20s; animation-delay: -13s; width: 5.2vh; }
+.tg-leaf.l5 { left: 55vw; animation-duration: 15s; animation-delay: -7s; }
+.tg-leaf.l6 { left: 67vw; animation-duration: 19s; animation-delay: -1s;  width: 4.2vh; }
+.tg-leaf.l7 { left: 79vw; animation-duration: 17s; animation-delay: -11s; }
+.tg-leaf.l8 { left: 91vw; animation-duration: 21s; animation-delay: -4s;  width: 5vh; }
+.tg-leaf.l2 svg, .tg-leaf.l5 svg, .tg-leaf.l8 svg { animation-duration: 1.8s; }
+.tg-leaf svg { animation-duration: 2.4s; }
+@keyframes tg-fall {
+  0%   { transform: translate(0, 0); }
+  25%  { transform: translate(3vw, 30vh); }
+  50%  { transform: translate(-2vw, 60vh); }
+  75%  { transform: translate(3vw, 90vh); }
+  100% { transform: translate(0, 118vh); }
+}
+@keyframes tg-spin { from { transform: rotate(-35deg); } to { transform: rotate(35deg); } }
+
+/* every animated piece gets its own GPU layer so the Fire TV only moves/fades it */
+.tg-turkey, .tg-tail, .tg-sign, .tg-leaf, .tg-leaf svg, .tg-border { will-change: transform, opacity; }
