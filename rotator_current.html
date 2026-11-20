@@ -29,12 +29,10 @@
   var THEME_UNTIL = new Date("2026-11-30T00:00:00-08:00");
   if (new Date() < THEME_UNTIL) document.body.style.background = "#2a0f08";
   var THEME_VERSION = Date.now() - Date.now() % 3600000; // re-fetch the theme at most hourly
+  // One "thankful for" sign per screen.
+  var THANKFUL = ["Early lifts", "Good sleep", "Teammates", "New PRs", "Rest days", "Second helpings"];
   var LEAF_COLORS = ["#d9541e", "#f0a020", "#a3243b", "#c97a1a", "#e2b33c", "#b8441a", "#8f2a1c", "#e07b28"];
-  // Two rounded leaf shapes (lobed oak + smooth teardrop), alternated.
-  var LEAVES = [
-    '<svg viewBox="0 0 40 46"><path fill="C" d="M20 3c5 0 7 5 5 9c5-2 9 2 7 6c-1 2-3 3-5 3c5 1 7 6 4 9c-2 2-5 2-7 1c1 4-1 7-4 7c-3 0-5-3-4-7c-2 1-5 1-7-1c-3-3-1-8 4-9c-2 0-4-1-5-3c-2-4 2-8 7-6c-2-4 0-9 5-9z"/><path d="M20 9v36" stroke="#3a1608" stroke-width="1.4" fill="none" opacity=".6"/></svg>',
-    '<svg viewBox="0 0 40 46"><path fill="C" d="M20 3C31 10 36 20 33 29C31 35 26 39 20 39C14 39 9 35 7 29C4 20 9 10 20 3z"/><path d="M20 9v36M20 20l6-5M20 27l7-5M20 20l-6-5M20 27l-7-5" stroke="#3a1608" stroke-width="1.3" fill="none" stroke-linecap="round" opacity=".55"/></svg>'
-  ];
+  var LEAF = '<svg viewBox="0 0 40 44"><path fill="C" d="M20 2l3 8 6-4-1 8 8-1-4 6 6 3-8 3 3 7-8-3-2 8-3-7-3 7-2-8-8 3 3-7-8-3 6-3-4-6 8 1-1-8 6 4z"/><path d="M20 12v30" stroke="#3a1608" stroke-width="1.4" fill="none" opacity=".6"/></svg>';
   var TURKEY = '<svg viewBox="0 0 200 180"><g class="tg-tail">' +
     '<g stroke="#2a0f08" stroke-width="2">' +
     '<ellipse cx="100" cy="60" rx="16" ry="52" fill="#a3243b" transform="rotate(-75 100 120)"/>' +
@@ -67,14 +65,15 @@
       back.className = "tg-fx tg-back";
       var leaves = "";
       for (var k = 1; k <= 8; k++) {
-        leaves += '<div class="tg-leaf l' + k + '">' + LEAVES[k % 2].replace("C", LEAF_COLORS[(k + idx) % LEAF_COLORS.length]) + '</div>';
+        leaves += '<div class="tg-leaf l' + k + '">' + LEAF.replace("C", LEAF_COLORS[(k + idx) % LEAF_COLORS.length]) + '</div>';
       }
       back.innerHTML = leaves;
       d.body.appendChild(back);
       var fx = d.createElement("div");
       fx.className = "tg-fx";
       fx.innerHTML = '<div class="tg-border"></div>' +
-        '<div class="tg-turkey">' + TURKEY + '</div>';
+        '<div class="tg-turkey">' + TURKEY + '</div>' +
+        '<div class="tg-sign"><span>Thankful for</span><b>' + THANKFUL[idx % THANKFUL.length] + '</b></div>';
       d.body.appendChild(fx);
     } catch (e) { done(); }
   }
