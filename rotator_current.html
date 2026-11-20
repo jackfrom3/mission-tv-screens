@@ -25,42 +25,56 @@
   var SECONDS_PER_SCREEN = 18;
   var i = 0;
 
-  // THEME: 1950s Thanksgiving look on every screen until Mon 11/30/2026 (turns itself off after).
+  // THEME: Thanksgiving harvest look on every screen until Mon 11/30/2026 (turns itself off after).
   var THEME_UNTIL = new Date("2026-11-30T00:00:00-08:00");
-  if (new Date() < THEME_UNTIL) document.body.style.background = "#173840";
+  if (new Date() < THEME_UNTIL) document.body.style.background = "#2a0f08";
   var THEME_VERSION = Date.now() - Date.now() % 3600000; // re-fetch the theme at most hourly
-  var SCENE = "thanksgiving_art/scene50s.svg?v=" + THEME_VERSION;
-  // starburst badge: spinning mustard rays around a coral disc
-  var rays = "";
-  for (var r = 0; r < 16; r++) rays += '<path d="M100 100 L' + (100 + 98 * Math.cos(r * Math.PI / 8 - 0.09)).toFixed(1) + ' ' + (100 + 98 * Math.sin(r * Math.PI / 8 - 0.09)).toFixed(1) + ' L' + (100 + 98 * Math.cos(r * Math.PI / 8 + 0.09)).toFixed(1) + ' ' + (100 + 98 * Math.sin(r * Math.PI / 8 + 0.09)).toFixed(1) + 'z"/>';
-  var BADGE = '<svg viewBox="0 0 200 200"><g class="tg-rays" fill="#e8c26a">' + rays + '</g>' +
-    '<circle cx="100" cy="100" r="64" fill="#f07a62" stroke="#f2e3c4" stroke-width="5"/>' +
-    '<circle cx="100" cy="100" r="54" fill="none" stroke="#f2e3c4" stroke-width="2" stroke-dasharray="4 5"/>' +
-    '<text x="100" y="92" text-anchor="middle" font-family="Yellowtail, cursive" font-size="34" fill="#fff">Happy</text>' +
-    '<text x="100" y="122" text-anchor="middle" font-family="Barlow, sans-serif" font-weight="800" font-size="14" letter-spacing="1.5" fill="#173840">TURKEY DAY!</text></svg>';
-  // Dresses up a loaded screen, then calls done() once the stylesheet + scene are in.
+  var LEAF_COLORS = ["#d9541e", "#f0a020", "#a3243b", "#c97a1a", "#e2b33c", "#b8441a", "#8f2a1c", "#e07b28"];
+  // Two rounded leaf shapes (lobed oak + smooth teardrop), alternated.
+  var LEAVES = [
+    '<svg viewBox="0 0 40 46"><path fill="C" d="M20 3c5 0 7 5 5 9c5-2 9 2 7 6c-1 2-3 3-5 3c5 1 7 6 4 9c-2 2-5 2-7 1c1 4-1 7-4 7c-3 0-5-3-4-7c-2 1-5 1-7-1c-3-3-1-8 4-9c-2 0-4-1-5-3c-2-4 2-8 7-6c-2-4 0-9 5-9z"/><path d="M20 9v36" stroke="#3a1608" stroke-width="1.4" fill="none" opacity=".6"/></svg>',
+    '<svg viewBox="0 0 40 46"><path fill="C" d="M20 3C31 10 36 20 33 29C31 35 26 39 20 39C14 39 9 35 7 29C4 20 9 10 20 3z"/><path d="M20 9v36M20 20l6-5M20 27l7-5M20 20l-6-5M20 27l-7-5" stroke="#3a1608" stroke-width="1.3" fill="none" stroke-linecap="round" opacity=".55"/></svg>'
+  ];
+  var TURKEY = '<svg viewBox="0 0 200 180"><g class="tg-tail">' +
+    '<g stroke="#2a0f08" stroke-width="2">' +
+    '<ellipse cx="100" cy="60" rx="16" ry="52" fill="#a3243b" transform="rotate(-75 100 120)"/>' +
+    '<ellipse cx="100" cy="60" rx="16" ry="52" fill="#f0a020" transform="rotate(-50 100 120)"/>' +
+    '<ellipse cx="100" cy="60" rx="16" ry="52" fill="#d9541e" transform="rotate(-25 100 120)"/>' +
+    '<ellipse cx="100" cy="60" rx="16" ry="52" fill="#a3243b" transform="rotate(0 100 120)"/>' +
+    '<ellipse cx="100" cy="60" rx="16" ry="52" fill="#d9541e" transform="rotate(25 100 120)"/>' +
+    '<ellipse cx="100" cy="60" rx="16" ry="52" fill="#f0a020" transform="rotate(50 100 120)"/>' +
+    '<ellipse cx="100" cy="60" rx="16" ry="52" fill="#a3243b" transform="rotate(75 100 120)"/></g></g>' +
+    '<path d="M80 168l-4 10M76 178h-8M76 178l2 -2M120 168l4 10M124 178h8" stroke="#f0a020" stroke-width="4" stroke-linecap="round"/>' +
+    '<ellipse cx="100" cy="128" rx="38" ry="42" fill="#6b3a1e" stroke="#2a0f08" stroke-width="2"/>' +
+    '<ellipse cx="100" cy="138" rx="24" ry="26" fill="#8a4f28"/>' +
+    '<circle cx="100" cy="82" r="22" fill="#7a4524" stroke="#2a0f08" stroke-width="2"/>' +
+    '<circle cx="92" cy="78" r="5" fill="#fff"/><circle cx="108" cy="78" r="5" fill="#fff"/>' +
+    '<circle cx="93" cy="79" r="2.6" fill="#111"/><circle cx="107" cy="79" r="2.6" fill="#111"/>' +
+    '<path d="M94 88l6 10 6-10z" fill="#ffc65c" stroke="#2a0f08" stroke-width="1.2"/>' +
+    '<path d="M104 92q8 4 4 16q-8 -2 -6 -12z" fill="#c8243b"/></svg>';
+  // Dresses up a loaded screen, then calls done() once the theme stylesheet is in.
   function theme(frame, idx, done) {
     if (new Date() >= THEME_UNTIL) return done();
     try {
       var d = frame.contentDocument;
-      var waiting = 2; // stylesheet + scene
-      var ready = function () { if (--waiting === 0) done(); };
-      setTimeout(done, 3000);
       var link = d.createElement("link");
       link.rel = "stylesheet";
       link.href = "thanksgiving.css?v=" + THEME_VERSION;
-      link.onload = link.onerror = ready;
+      link.onload = link.onerror = function () { done(); };
+      setTimeout(done, 2500);
       d.head.appendChild(link);
       var back = d.createElement("div");
       back.className = "tg-fx tg-back";
-      back.innerHTML = '<img class="tg-scene" alt=""><div class="tg-shade"></div>';
-      var img = back.querySelector("img");
-      img.onload = img.onerror = ready;
-      img.src = SCENE;
+      var leaves = "";
+      for (var k = 1; k <= 8; k++) {
+        leaves += '<div class="tg-leaf l' + k + '">' + LEAVES[k % 2].replace("C", LEAF_COLORS[(k + idx) % LEAF_COLORS.length]) + '</div>';
+      }
+      back.innerHTML = leaves;
       d.body.appendChild(back);
       var fx = d.createElement("div");
       fx.className = "tg-fx";
-      fx.innerHTML = '<div class="tg-frame"></div><div class="tg-badge">' + BADGE + '</div>';
+      fx.innerHTML = '<div class="tg-border"></div>' +
+        '<div class="tg-turkey">' + TURKEY + '</div>';
       d.body.appendChild(fx);
     } catch (e) { done(); }
   }
