@@ -1,82 +1,77 @@
-/* Thanksgiving vintage theme — layered on every screen by rotator_current.html until Mon 11/30/2026.
-   Each screen gets a public-domain 1800s Thanksgiving artwork (thanksgiving_art/) behind it, warm-toned
-   and darkened so the text stays readable, with a credit line. Same pattern as halloween80s.css. */
-@import url("https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&display=block");
+/* Thanksgiving 1950s theme — layered on every screen by rotator_current.html until Mon 11/30/2026.
+   Original mid-century dining-room illustration (thanksgiving_art/scene50s.svg) behind every screen,
+   darkened so the text stays readable, plus a retro starburst badge. Same pattern as halloween80s.css. */
+@import url("https://fonts.googleapis.com/css2?family=Yellowtail&display=block");
 
 :root {
-  --ground: #1c0b05;
-  --ground-2: #2e140a;
-  --ground-3: #120603;
-  --hairline: rgba(226, 180, 110, 0.45);
-  --accent: #e8b86a;
-  --accent-dim: rgba(232, 184, 106, 0.6);
+  --ground: #173840;
+  --ground-2: #1f4a52;
+  --ground-3: #0e2228;
+  --hairline: rgba(232, 194, 106, 0.45);
+  --accent: #e8c26a;
+  --accent-dim: rgba(232, 194, 106, 0.6);
   --ink: #ffffff;
-  --ink-muted: #f5e6cc;
-  --gold: #e8b86a;
+  --ink-muted: #f2e3c4;
+  --mustard: #e8c26a;
+  --coral: #f07a62;
+  --cream: #f2e3c4;
 }
 
-.stage { background: #1c0b05 !important; overflow: hidden; }
+.stage { background: #173840 !important; overflow: hidden; }
 .stage > * { position: relative; z-index: 2; }
 .stage::before, .stage::after { content: none !important; }
 
 /* readability: a soft dark halo behind all text (zero-specificity, screens' own glows still win) */
-:where(.stage) * { text-shadow: 0 0 0.5vh #120603, 0 0 1.2vh #120603, 0 0 2.2vh rgba(18, 6, 3, 0.9); }
+:where(.stage) * { text-shadow: 0 0 0.5vh #0b1c21, 0 0 1.2vh #0b1c21, 0 0 2.2vh rgba(11, 28, 33, 0.9); }
 
-h1 { color: #fff !important; text-shadow: 0 0.3vh 0 #120603, 0 0 1.6vh rgba(232, 184, 106, 0.55), 0 0 3vh #120603; }
+h1 { color: #fff !important; text-shadow: 0.35vh 0.35vh 0 var(--coral), 0 0 2.4vh #0b1c21; }
 
-.eyebrow-kicker, .round-label, .metric-name, .meta { color: var(--gold) !important; }
+.eyebrow-kicker, .round-label, .metric-name, .meta { color: var(--mustard) !important; }
 .eyebrow-kicker::after {
-  content: "   Happy Thanksgiving";
-  font-family: "IM Fell English", serif;
-  font-style: italic;
-  font-size: 1.3em;
+  content: "   Happy Thanksgiving!";
+  font-family: "Yellowtail", cursive;
+  font-size: 1.45em;
   letter-spacing: 0.01em;
   text-transform: none;
-  color: #f5dca8;
+  color: var(--coral);
 }
-.mark { color: var(--gold) !important; }
-.num, .tag { color: var(--gold) !important; }
-.champion-box { box-shadow: 0 0 2vh rgba(232, 184, 106, 0.5), inset 0 0 2vh rgba(232, 184, 106, 0.25); }
+.mark { color: var(--mustard) !important; }
+.num, .tag { color: var(--mustard) !important; }
+.slot.winner { color: #fff; }
+.champion-box { box-shadow: 0 0 2vh rgba(232, 194, 106, 0.5), inset 0 0 2vh rgba(232, 194, 106, 0.25); }
 
 /* layers added by the rotator */
 .tg-fx { position: fixed; inset: 0; pointer-events: none; z-index: 50; overflow: hidden; }
 .tg-fx.tg-back { z-index: 1; }
 
-/* the painting: full-bleed, slow push-in over the screen's 18 seconds */
-.tg-art {
-  position: absolute; inset: -2%;
-  background-position: center 40%; background-size: cover; background-repeat: no-repeat;
-  animation: tg-push 22s ease-out both;
-}
-@keyframes tg-push { from { transform: scale(1); } to { transform: scale(1.07); } }
-/* darken for legibility: heavier on the left/top where most text sits, plus a vignette */
+.tg-scene { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .tg-shade {
   position: absolute; inset: 0;
   background:
-    radial-gradient(ellipse at 50% 50%, transparent 35%, rgba(12, 4, 2, 0.75) 100%),
-    linear-gradient(90deg, rgba(18, 6, 3, 0.78) 0%, rgba(18, 6, 3, 0.62) 55%, rgba(18, 6, 3, 0.5) 100%),
-    linear-gradient(180deg, rgba(18, 6, 3, 0.35) 0%, transparent 30%, transparent 75%, rgba(18, 6, 3, 0.5) 100%);
+    linear-gradient(90deg, rgba(11, 28, 33, 0.82) 0%, rgba(11, 28, 33, 0.66) 50%, rgba(11, 28, 33, 0.42) 100%),
+    radial-gradient(ellipse at 50% 50%, transparent 45%, rgba(6, 16, 19, 0.6) 100%);
 }
 
-/* gilded picture frame */
+/* chrome-and-coral TV-set style frame */
 .tg-frame {
   position: absolute; inset: 0;
   box-shadow:
-    inset 0 0 0 0.45vh #b8873e,
-    inset 0 0 0 0.75vh #3a1a08,
-    inset 0 0 0 0.95vh #e8c27a,
+    inset 0 0 0 0.5vh #f07a62,
+    inset 0 0 0 0.8vh #0e2228,
+    inset 0 0 0 1.05vh #dfe6e8,
     inset 0 0 3vh rgba(0, 0, 0, 0.6);
 }
 
-/* credit line, bottom center */
-.tg-credit {
-  position: absolute; left: 0; right: 0; bottom: 1.3vh;
-  text-align: center;
-  font-family: "IM Fell English", serif; font-style: italic;
-  font-size: 1.25vh; letter-spacing: 0.03em;
-  color: rgba(245, 230, 204, 0.62);
-  text-shadow: 0 0 0.6vh #120603;
+/* retro starburst badge, top right, slowly spinning rays */
+.tg-badge {
+  position: absolute; right: 2vw; top: 1.4vh;
+  width: 17vh; height: 17vh;
+  filter: drop-shadow(0 0.4vh 0.8vh rgba(0, 0, 0, 0.5));
+  animation: tg-bob 3s ease-in-out infinite;
 }
-.tg-credit b { font-family: "IM Fell English SC", serif; font-style: normal; font-weight: 400; color: rgba(232, 184, 106, 0.8); }
+.tg-badge svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.tg-rays { transform-origin: 100px 100px; animation: tg-spin 30s linear infinite; }
+@keyframes tg-spin { to { transform: rotate(360deg); } }
+@keyframes tg-bob { 0%, 100% { transform: translateY(0) rotate(-4deg); } 50% { transform: translateY(-0.6vh) rotate(4deg); } }
 
-.tg-art { will-change: transform; }
+.tg-badge, .tg-rays { will-change: transform; }

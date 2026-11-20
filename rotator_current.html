@@ -25,23 +25,25 @@
   var SECONDS_PER_SCREEN = 18;
   var i = 0;
 
-  // THEME: vintage Thanksgiving look on every screen until Mon 11/30/2026 (turns itself off after).
+  // THEME: 1950s Thanksgiving look on every screen until Mon 11/30/2026 (turns itself off after).
   var THEME_UNTIL = new Date("2026-11-30T00:00:00-08:00");
-  if (new Date() < THEME_UNTIL) document.body.style.background = "#1c0b05";
+  if (new Date() < THEME_UNTIL) document.body.style.background = "#173840";
   var THEME_VERSION = Date.now() - Date.now() % 3600000; // re-fetch the theme at most hourly
-  // One public-domain 1800s Thanksgiving artwork per screen (files in thanksgiving_art/, credited on screen).
-  var ART = [
-    { img: "dinner", title: "Thanksgiving Day \u2014 The Dinner", credit: "Winslow Homer, Harper\u2019s Weekly, 1858 \u00b7 Cleveland Museum of Art \u00b7 CC0" },
-    { img: "home", title: "Home to Thanksgiving", credit: "Currier &amp; Ives after George H. Durrie, 1867 \u00b7 National Gallery of Art \u00b7 Public domain" },
-    { img: "arrival", title: "Thanksgiving Day \u2014 Arrival at the Old Home", credit: "Winslow Homer, Harper\u2019s Weekly, 1858 \u00b7 Public domain" }
-  ];
-  // Dresses up a loaded screen, then calls done() once the stylesheet + painting are in.
+  var SCENE = "thanksgiving_art/scene50s.svg?v=" + THEME_VERSION;
+  // starburst badge: spinning mustard rays around a coral disc
+  var rays = "";
+  for (var r = 0; r < 16; r++) rays += '<path d="M100 100 L' + (100 + 98 * Math.cos(r * Math.PI / 8 - 0.09)).toFixed(1) + ' ' + (100 + 98 * Math.sin(r * Math.PI / 8 - 0.09)).toFixed(1) + ' L' + (100 + 98 * Math.cos(r * Math.PI / 8 + 0.09)).toFixed(1) + ' ' + (100 + 98 * Math.sin(r * Math.PI / 8 + 0.09)).toFixed(1) + 'z"/>';
+  var BADGE = '<svg viewBox="0 0 200 200"><g class="tg-rays" fill="#e8c26a">' + rays + '</g>' +
+    '<circle cx="100" cy="100" r="64" fill="#f07a62" stroke="#f2e3c4" stroke-width="5"/>' +
+    '<circle cx="100" cy="100" r="54" fill="none" stroke="#f2e3c4" stroke-width="2" stroke-dasharray="4 5"/>' +
+    '<text x="100" y="92" text-anchor="middle" font-family="Yellowtail, cursive" font-size="34" fill="#fff">Happy</text>' +
+    '<text x="100" y="122" text-anchor="middle" font-family="Barlow, sans-serif" font-weight="800" font-size="14" letter-spacing="1.5" fill="#173840">TURKEY DAY!</text></svg>';
+  // Dresses up a loaded screen, then calls done() once the stylesheet + scene are in.
   function theme(frame, idx, done) {
     if (new Date() >= THEME_UNTIL) return done();
     try {
       var d = frame.contentDocument;
-      var art = ART[idx % ART.length];
-      var waiting = 2; // stylesheet + painting
+      var waiting = 2; // stylesheet + scene
       var ready = function () { if (--waiting === 0) done(); };
       setTimeout(done, 3000);
       var link = d.createElement("link");
@@ -49,18 +51,16 @@
       link.href = "thanksgiving.css?v=" + THEME_VERSION;
       link.onload = link.onerror = ready;
       d.head.appendChild(link);
-      var src = "thanksgiving_art/" + art.img + ".webp";
-      var pic = new Image();
-      pic.onload = pic.onerror = ready;
-      pic.src = src;
       var back = d.createElement("div");
       back.className = "tg-fx tg-back";
-      back.innerHTML = '<div class="tg-art" style="background-image:url(' + src + ')"></div><div class="tg-shade"></div>';
+      back.innerHTML = '<img class="tg-scene" alt=""><div class="tg-shade"></div>';
+      var img = back.querySelector("img");
+      img.onload = img.onerror = ready;
+      img.src = SCENE;
       d.body.appendChild(back);
       var fx = d.createElement("div");
       fx.className = "tg-fx";
-      fx.innerHTML = '<div class="tg-frame"></div>' +
-        '<div class="tg-credit"><b>' + art.title + '</b> &nbsp;\u00b7&nbsp; ' + art.credit + '</div>';
+      fx.innerHTML = '<div class="tg-frame"></div><div class="tg-badge">' + BADGE + '</div>';
       d.body.appendChild(fx);
     } catch (e) { done(); }
   }

@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+<style>
+.fl{transform-box:fill-box;transform-origin:50% 100%;animation:fl .18s ease-in-out infinite alternate}
+.fl2{animation-duration:.23s;animation-delay:-.1s}
+@keyframes fl{from{transform:scale(1,1) skewX(-3deg)}to{transform:scale(.9,1.12) skewX(3deg)}}
+.st{animation:st 4s ease-in infinite;opacity:0}
+.st2{animation-delay:-1.4s}.st3{animation-delay:-2.7s}
+@keyframes st{0%{opacity:0;transform:translateY(0)}20%{opacity:.55}100%{opacity:0;transform:translateY(-120px)}}
+.geese{animation:geese 26s linear infinite}
+@keyframes geese{from{transform:translateX(-200px)}to{transform:translateX(760px)}}
+.glow{animation:glow 3s ease-in-out infinite alternate}
+@keyframes glow{from{opacity:.75}to{opacity:1}}
+.tick{transform-box:fill-box;transform-origin:50% 100%;animation:tick 60s steps(60) infinite}
+@keyframes tick{to{transform:rotate(360deg)}}
+</style>
+<defs>
+<pattern id="wall" width="160" height="140" patternUnits="userSpaceOnUse">
+<path d="M20 30 q30 -24 60 0 q-30 -8 -60 0z" fill="#1f4a52"/>
+<path d="M100 100 q30 -24 60 0 q-30 -8 -60 0z" fill="#1f4a52" transform="rotate(30 130 95)"/>
+<g stroke="#245560" stroke-width="2"><path d="M120 30v16M112 38h16M114 32l12 12M126 32l-12 12"/><path d="M40 100v12M34 106h12"/></g>
+<circle cx="70" cy="70" r="3" fill="#245560"/>
+</pattern>
+<pattern id="formica" width="120" height="60" patternUnits="userSpaceOnUse">
+<path d="M10 20 q20 -14 40 0 q-20 -5 -40 0z" fill="#b13a2e"/><path d="M70 45 q20 -14 40 0 q-20 -5 -40 0z" fill="#d9614c"/>
+<circle cx="90" cy="15" r="2.5" fill="#e8c26a"/><circle cx="30" cy="48" r="2" fill="#f2e3c4"/>
+</pattern>
+<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a2a52"/><stop offset=".45" stop-color="#c8573a"/><stop offset=".8" stop-color="#f29a4a"/><stop offset="1" stop-color="#f7c46a"/></linearGradient>
+<radialGradient id="turk" cx="40%" cy="30%" r="75%"><stop offset="0" stop-color="#f6c070"/><stop offset=".45" stop-color="#c8702a"/><stop offset="1" stop-color="#6a2e10"/></radialGradient>
+<radialGradient id="leg" cx="35%" cy="35%" r="70%"><stop offset="0" stop-color="#eaa458"/><stop offset="1" stop-color="#8a3e14"/></radialGradient>
+<linearGradient id="chrome" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fafafa"/><stop offset=".5" stop-color="#9aa4a8"/><stop offset="1" stop-color="#e6ecee"/></linearGradient>
+<linearGradient id="drape" x1="0" x2="1"><stop offset="0" stop-color="#b8862a"/><stop offset=".3" stop-color="#e8b84a"/><stop offset=".6" stop-color="#c8962e"/><stop offset="1" stop-color="#e2b048"/></linearGradient>
+<radialGradient id="lamp" cx="50%" cy="0%" r="100%"><stop offset="0" stop-color="#ffe9a8" stop-opacity=".55"/><stop offset="1" stop-color="#ffe9a8" stop-opacity="0"/></radialGradient>
+<radialGradient id="jello" cx="40%" cy="30%" r="80%"><stop offset="0" stop-color="#ff8a8a"/><stop offset=".6" stop-color="#d42a3a"/><stop offset="1" stop-color="#7a0e1c"/></radialGradient>
+<radialGradient id="pie" cx="50%" cy="40%" r="60%"><stop offset="0" stop-color="#f0a040"/><stop offset="1" stop-color="#b8601a"/></radialGradient>
+<clipPath id="win"><rect x="1080" y="130" width="680" height="520"/></clipPath>
+</defs>
+
+<!-- wall -->
+<rect width="1920" height="1080" fill="#173840"/>
+<rect width="1920" height="1080" fill="url(#wall)"/>
+<rect y="760" width="1920" height="12" fill="#e8c26a" opacity=".8"/>
+<rect y="772" width="1920" height="60" fill="#12303a"/>
+
+<!-- picture window -->
+<g>
+<rect x="1080" y="130" width="680" height="520" fill="url(#sky)"/>
+<circle cx="1520" cy="560" r="90" fill="#ffd27a" opacity=".9"/>
+<g clip-path="url(#win)"><g class="geese" fill="none" stroke="#2a1a2a" stroke-width="3" stroke-linecap="round">
+<path d="M1100 260l10 8 10-8M1130 275l8 6 8-6M1160 252l8 6 8-6M1080 282l8 6 8-6"/></g></g>
+<path d="M1080 560 Q1250 500 1420 540 T1760 520 V650 H1080z" fill="#7a3a2a"/>
+<path d="M1080 600 Q1300 560 1500 590 T1760 585 V650 H1080z" fill="#4e2420"/>
+<!-- ranch house -->
+<g><path d="M1180 560 L1290 520 L1420 560z" fill="#2e1e2a"/><rect x="1195" y="558" width="210" height="50" fill="#3e2a34"/><rect x="1215" y="572" width="34" height="20" fill="#ffcf6a"/><rect x="1340" y="572" width="44" height="20" fill="#ffcf6a"/><rect x="1370" y="508" width="16" height="30" fill="#2e1e2a"/></g>
+<!-- mid-century trees -->
+<g><rect x="1132" y="470" width="6" height="110" fill="#3a1e14"/><circle cx="1135" cy="455" r="42" fill="#e2a83a"/>
+<rect x="1462" y="430" width="6" height="130" fill="#3a1e14"/><path d="M1465 360 L1510 470 L1420 470z" fill="#c8482a"/>
+<rect x="1662" y="455" width="6" height="110" fill="#3a1e14"/><ellipse cx="1665" cy="430" rx="40" ry="56" fill="#e07a2a"/>
+<rect x="1592" y="500" width="5" height="70" fill="#3a1e14"/><circle cx="1594" cy="492" r="26" fill="#b8302a"/></g>
+<!-- frame + mullions -->
+<rect x="1080" y="130" width="680" height="520" fill="none" stroke="#efe2c4" stroke-width="22"/>
+<path d="M1420 130v520M1080 390h680" stroke="#efe2c4" stroke-width="12"/>
+<rect x="1060" y="645" width="720" height="22" fill="#efe2c4"/>
+</g>
+<!-- drapes + valance -->
+<path d="M1000 110 Q1040 380 1010 700 L1100 700 Q1080 380 1110 110z" fill="url(#drape)"/>
+<path d="M1730 110 Q1760 380 1740 700 L1840 700 Q1810 380 1840 110z" fill="url(#drape)"/>
+<g stroke="#a8781e" stroke-width="3" opacity=".6"><path d="M1030 140 Q1060 400 1040 690M1770 140 Q1790 400 1775 690"/></g>
+<rect x="980" y="96" width="880" height="44" rx="10" fill="#d9614c"/>
+<g fill="#f2e3c4"><circle cx="1040" cy="118" r="6"/><circle cx="1140" cy="118" r="6"/><circle cx="1240" cy="118" r="6"/><circle cx="1340" cy="118" r="6"/><circle cx="1440" cy="118" r="6"/><circle cx="1540" cy="118" r="6"/><circle cx="1640" cy="118" r="6"/><circle cx="1740" cy="118" r="6"/><circle cx="1820" cy="118" r="6"/></g>
+
+<!-- atomic starburst clock -->
+<g transform="translate(820 250)">
+<g stroke="#e8c26a" stroke-width="5" stroke-linecap="round">
+<path d="M0 -120V-62M0 62V120M-120 0H-62M62 0H120M-85 -85L-44 -44M44 44L85 85M85 -85L44 -44M-44 44L-85 85"/>
+<path d="M-46 -110L-24 -58M46 110L24 58M110 -46L58 -24M-110 46L-58 24M46 -110L24 -58M-46 110L-24 58M110 46L58 24M-110 -46L-58 -24" stroke-width="3"/></g>
+<g fill="#e8c26a"><circle cy="-124" r="8"/><circle cy="124" r="8"/><circle cx="-124" r="8"/><circle cx="124" r="8"/><circle cx="-88" cy="-88" r="6"/><circle cx="88" cy="88" r="6"/><circle cx="88" cy="-88" r="6"/><circle cx="-88" cy="88" r="6"/></g>
+<circle r="56" fill="#f2e3c4" stroke="#e8c26a" stroke-width="6"/>
+<g stroke="#173840" stroke-width="5" stroke-linecap="round"><path d="M0 0L0 -34"/><path d="M0 0L26 12"/></g>
+<rect class="tick" x="-1.5" y="-46" width="3" height="46" fill="#d9614c"/>
+<circle r="6" fill="#d9614c"/>
+</g>
+
+<!-- cone pendant lamp -->
+<g>
+<path d="M600 0V300" stroke="#0e2228" stroke-width="4"/>
+<path class="glow" d="M520 360 L340 1080 H860 L680 360z" fill="url(#lamp)"/>
+<path d="M545 300 L655 300 L700 370 L500 370z" fill="#d9614c"/>
+<path d="M545 300 L655 300 L660 312 L540 312z" fill="#f2e3c4"/>
+<ellipse cx="600" cy="370" rx="100" ry="12" fill="#ffe9a8"/>
+</g>
+
+<!-- table -->
+<rect y="842" width="1920" height="238" fill="#c8483a"/>
+<rect y="842" width="1920" height="238" fill="url(#formica)"/>
+<rect y="830" width="1920" height="16" fill="url(#chrome)"/>
+
+<!-- place settings at the front edge -->
+<g><ellipse cx="300" cy="1060" rx="150" ry="40" fill="#f2e3c4"/><ellipse cx="300" cy="1060" rx="110" ry="28" fill="none" stroke="#5aa8a0" stroke-width="5"/>
+<ellipse cx="1300" cy="1065" rx="150" ry="40" fill="#f2e3c4"/><ellipse cx="1300" cy="1065" rx="110" ry="28" fill="none" stroke="#5aa8a0" stroke-width="5"/>
+<rect x="120" y="1020" width="10" height="70" rx="5" fill="url(#chrome)"/><rect x="470" y="1020" width="10" height="70" rx="5" fill="url(#chrome)"/>
+<rect x="1120" y="1025" width="10" height="70" rx="5" fill="url(#chrome)"/><rect x="1470" y="1025" width="10" height="70" rx="5" fill="url(#chrome)"/></g>
+
+<!-- jello mold -->
+<g transform="translate(830 900)">
+<ellipse cy="40" rx="120" ry="22" fill="#f2e3c4"/>
+<path d="M-90 36 L-74 -44 Q0 -64 74 -44 L90 36 Q0 52 -90 36z" fill="url(#jello)"/>
+<g fill="none" stroke="#ff9aa0" stroke-width="3" opacity=".7"><path d="M-60 -40 L-70 34M-20 -50 L-24 42M20 -50 L24 42M60 -40 L70 34"/></g>
+<ellipse cy="-46" rx="74" ry="14" fill="#e8404a"/><ellipse cy="-46" rx="26" ry="6" fill="#7a0e1c"/>
+<circle cx="-30" cy="-10" r="6" fill="#f6e8b0" opacity=".8"/><circle cx="30" cy="10" r="5" fill="#f6e8b0" opacity=".8"/>
+</g>
+
+<!-- candles in atomic holders -->
+<g transform="translate(1030 840)"><path d="M-30 30 L0 0 L30 30z" fill="url(#chrome)"/><rect x="-9" y="-150" width="18" height="152" fill="#f2e3c4"/><path class="fl" d="M0 -196 Q14 -170 8 -156 Q0 -148 -8 -156 Q-14 -170 0 -196z" fill="#ffcf4a"/><circle cy="-170" r="30" fill="#ffd27a" opacity=".2"/></g>
+<g transform="translate(1660 840)"><path d="M-30 30 L0 0 L30 30z" fill="url(#chrome)"/><rect x="-9" y="-130" width="18" height="132" fill="#f2e3c4"/><path class="fl fl2" d="M0 -176 Q14 -150 8 -136 Q0 -128 -8 -136 Q-14 -150 0 -176z" fill="#ffcf4a"/><circle cy="-150" r="30" fill="#ffd27a" opacity=".2"/></g>
+
+<!-- roast turkey on platter -->
+<g transform="translate(1340 860)">
+<ellipse cy="52" rx="280" ry="50" fill="#f2e3c4"/>
+<ellipse cy="52" rx="240" ry="36" fill="none" stroke="#e8c26a" stroke-width="5"/>
+<g fill="#5a9a3a"><circle cx="-200" cy="40" r="20"/><circle cx="-170" cy="58" r="18"/><circle cx="200" cy="40" r="20"/><circle cx="174" cy="60" r="18"/></g>
+<g fill="#f29a2a"><circle cx="-150" cy="62" r="14"/><circle cx="150" cy="64" r="14"/></g>
+<ellipse cx="-110" cy="10" rx="70" ry="42" fill="url(#leg)" transform="rotate(-24 -110 10)"/>
+<ellipse cx="110" cy="10" rx="70" ry="42" fill="url(#leg)" transform="rotate(24 110 10)"/>
+<ellipse cy="-30" rx="170" ry="96" fill="url(#turk)"/>
+<ellipse cx="-50" cy="-80" rx="70" ry="22" fill="#fff4c8" opacity=".35" transform="rotate(-12 -50 -80)"/>
+<path d="M-60 -110 Q0 -128 60 -110" stroke="#8a3e14" stroke-width="3" fill="none" opacity=".5"/>
+<g transform="translate(-170 -40) rotate(-40)"><rect x="-8" y="-46" width="16" height="50" rx="6" fill="#f2e3c4"/><path d="M-14 -46 l4 -12 4 10 4 -10 4 10 4 -10 4 12z" fill="#fff"/></g>
+<g transform="translate(170 -40) rotate(40)"><rect x="-8" y="-46" width="16" height="50" rx="6" fill="#f2e3c4"/><path d="M-14 -46 l4 -12 4 10 4 -10 4 10 4 -10 4 12z" fill="#fff"/></g>
+<g fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"><path class="st" d="M-40 -140 q-14 -24 0 -48 q14 -24 0 -48"/><path class="st st2" d="M10 -150 q-14 -24 0 -48 q14 -24 0 -48"/><path class="st st3" d="M60 -140 q-14 -24 0 -48 q14 -24 0 -48"/></g>
+</g>
+
+<!-- pumpkin pie + a cut slice -->
+<g transform="translate(1790 925)">
+<ellipse cy="24" rx="125" ry="30" fill="#f2e3c4"/>
+<ellipse cy="6" rx="100" ry="28" fill="#c8862a"/>
+<ellipse cy="2" rx="88" ry="22" fill="url(#pie)"/>
+<g stroke="#d89a3a" stroke-width="4"><path d="M-100 6 v10M-70 24 v8M-30 32 v6M10 33 v6M50 30 v7M85 20 v8"/></g>
+<g fill="#fff"><circle cx="-20" cy="-2" r="13"/><circle cx="-12" cy="-10" r="9"/><circle cx="-28" cy="-8" r="8"/></g>
+</g>
+</svg>
