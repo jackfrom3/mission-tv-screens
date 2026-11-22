@@ -52,8 +52,82 @@
     '<circle cx="93" cy="79" r="2.6" fill="#111"/><circle cx="107" cy="79" r="2.6" fill="#111"/>' +
     '<path d="M94 88l6 10 6-10z" fill="#ffc65c" stroke="#2a0f08" stroke-width="1.2"/>' +
     '<path d="M104 92q8 4 4 16q-8 -2 -6 -12z" fill="#c8243b"/></svg>';
+  // CHRISTMAS: cabin scene (christmas_scene.jpg) + twinkle lights + fire glow + window snow +
+  // string lights + countdown, Mon 11/30/2026 through 12/31 (turns itself off after).
+  // Preview any time with ?xmas in the URL (add &screen=N to start on screen N).
+  var XMAS_FROM = new Date("2026-11-30T00:00:00-08:00");
+  var XMAS_UNTIL = new Date("2027-01-01T00:00:00-08:00");
+  var XMAS_PREVIEW = /[?&]xmas/.test(location.search);
+  function xmasOn() { var n = new Date(); return XMAS_PREVIEW || (n >= XMAS_FROM && n < XMAS_UNTIL); }
+  if (xmasOn()) document.body.style.background = "#0a1424";
+  var startAt = (location.search.match(/[?&]screen=(\d+)/) || [])[1];
+  // Light positions, in % of the screen, traced off the scene: big wreath, fireplace wreath, mantel garland
+  // (no tree lights: they ran over Santa, Jack 11/21).
+  var XM_LIGHTS = (function () {
+    var p = [], k;
+    for (k = 0; k < 16; k++) { var a = k / 16 * 6.283; p.push([49.6 + Math.cos(a) * 7.6, 18 + Math.sin(a) * 13]); }
+    for (k = 0; k < 9; k++)  { var b = k / 9 * 6.283;  p.push([81.6 + Math.cos(b) * 4.2, 17.5 + Math.sin(b) * 7.2]); }
+    for (k = 0; k < 13; k++) { var s = k / 12; p.push([70 + s * 28, 39 - s * 11 + Math.sin(s * 9.4) * 1.4]); }
+    return p;
+  })();
+  function xmasCount() {
+    var n = new Date(), xmas = new Date(n.getFullYear(), 11, 25);
+    var days = Math.round((xmas - new Date(n.getFullYear(), n.getMonth(), n.getDate())) / 86400000);
+    if (days > 1) return '<div class="xm-count"><b>' + days + '</b><span>Days until Christmas</span></div>';
+    if (days === 1) return '<div class="xm-count"><b>1</b><span>Day until Christmas</span></div>';
+    if (days === 0) return '<div class="xm-count merry"><b>Merry Christmas!</b></div>';
+    return '';
+  }
+  function xmasTheme(d, idx, done) {
+    var link = d.createElement("link");
+    link.rel = "stylesheet";
+    link.href = "christmas.css?v=" + THEME_VERSION;
+    link.onload = link.onerror = function () { done(); };
+    setTimeout(done, 2500);
+    d.head.appendChild(link);
+    // behind the words: fire, candles, twinkles, window snow
+    var back = d.createElement("div");
+    back.className = "xm-fx xm-back";
+    var h = '<div class="xm-warm"></div><div class="xm-fire"></div><div class="xm-fire f2"></div>' +
+      '<div class="xm-candle" style="left:59.6%;top:76%"></div><div class="xm-candle" style="left:63.8%;top:79%;animation-delay:-.6s"></div>' +
+      '<div class="xm-window">';
+    for (var f = 0; f < 22; f++) {
+      h += '<div class="xm-flake" style="left:' + ((f * 37) % 100) + '%;animation-duration:' + (9 + (f * 7) % 8) +
+        's;animation-delay:-' + ((f * 1.7) % 12).toFixed(1) + 's;opacity:' + (0.45 + (f % 4) * 0.15) + '"></div>';
+    }
+    h += '</div>';
+    XM_LIGHTS.forEach(function (pt, k) {
+      h += '<div class="xm-tw" style="left:' + pt[0].toFixed(1) + '%;top:' + pt[1].toFixed(1) + '%;animation-delay:-' +
+        ((k * 0.73 + idx) % 3).toFixed(2) + 's;animation-duration:' + (2.2 + (k % 5) * 0.5) + 's"></div>';
+    });
+    back.innerHTML = h;
+    d.body.appendChild(back);
+    // in front: string lights along the top + countdown
+    var fx = d.createElement("div");
+    fx.className = "xm-fx";
+    var bulbs = '<svg viewBox="0 0 1600 90" preserveAspectRatio="xMidYMin slice"><defs><radialGradient id="xg"><stop offset="0" stop-color="#ffe2a0" stop-opacity=".7"/><stop offset="1" stop-color="#ffe2a0" stop-opacity="0"/></radialGradient></defs>' +
+      '<path d="M0 4 Q50 22 100 4 T200 4 T300 4 T400 4 T500 4 T600 4 T700 4 T800 4 T900 4 T1000 4 T1100 4 T1200 4 T1300 4 T1400 4 T1500 4 T1600 4" stroke="#4a3a22" stroke-width="2.5" fill="none"/>';
+    for (var b = 0; b < 16; b++) {
+      var x = 50 + b * 100, col = ["#fff1c4", "#ffcf7a", "#ffe9a8", "#ffd99a"][b % 4];
+      bulbs += '<g transform="translate(' + x + ' 12) scale(1.7) translate(' + (-x) + ' -12)">' +
+        '<rect x="' + (x - 3.5) + '" y="12" width="7" height="6" rx="1" fill="#6a5634"/>' +
+        '<g class="xm-bulb" style="animation-delay:-' + ((b * 0.61 + idx * 0.3) % 2.4).toFixed(2) + 's">' +
+        '<circle cx="' + x + '" cy="27" r="20" fill="url(#xg)"/>' +
+        '<path d="M' + (x - 5) + ' 18 Q' + (x - 8) + ' 30 ' + x + ' 37 Q' + (x + 8) + ' 30 ' + (x + 5) + ' 18z" fill="' + col + '"/></g></g>';
+    }
+    bulbs += '</svg>';
+    // lights hang behind the words so a high header (testing boards) still reads on top
+    var lights = d.createElement("div");
+    lights.className = "xm-fx xm-back";
+    lights.innerHTML = '<div class="xm-lights">' + bulbs + '</div>';
+    d.body.appendChild(lights);
+    fx.innerHTML = xmasCount();
+    d.body.appendChild(fx);
+  }
+
   // Dresses up a loaded screen, then calls done() once the theme stylesheet is in.
   function theme(frame, idx, done) {
+    if (xmasOn()) { try { return xmasTheme(frame.contentDocument, idx, done); } catch (e) { return done(); } }
     if (new Date() >= THEME_UNTIL) return done();
     try {
       var d = frame.contentDocument;
@@ -105,6 +179,10 @@
     next.src = screens[index] + "?_r=" + Date.now();
   }
 
+  if (XMAS_PREVIEW) screens = screens.map(function (s) {   // preview shows the December screens
+    return s.replace("november_itinerary", "december_itinerary").replace("thanksgiving_food_bracket", "christmas_movie_bracket");
+  });
+  if (startAt) i = +startAt % screens.length;
   show(i);
   setInterval(function () {
     i = (i + 1) % screens.length;

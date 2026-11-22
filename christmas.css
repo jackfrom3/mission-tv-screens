@@ -1,0 +1,139 @@
+/* Christmas cabin theme: layered on every screen by rotator_current.html from Mon 11/30/2026 through 12/31.
+   Same pattern as thanksgiving.css: one CSS file + the THEME block in the rotator (it stops on its own).
+   Scene = christmas_scene.jpg (Gemini image Jack made 11/21, no logos). Colors: navy, gold, warm white. */
+@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=block");
+
+:root {
+  --ground: #0a1424;
+  --hairline: rgba(255, 214, 140, 0.45);
+  --accent: #ffd68c;
+  --accent-dim: rgba(255, 214, 140, 0.7);
+  --ink: #ffffff;
+  --ink-muted: #fff2dc;
+  --gold: #ffcf7a;
+  --navy: #0a1424;
+}
+
+/* the cabin scene, dimmed so the words always win */
+.stage {
+  background:
+    linear-gradient(180deg, rgba(6, 12, 26, 0.80) 0%, rgba(6, 12, 26, 0.62) 40%, rgba(6, 12, 26, 0.66) 100%),
+    url("christmas_scene.jpg") center / cover no-repeat,
+    #0a1424 !important;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 0.45vh var(--gold), inset 0 0 6vh rgba(0, 0, 0, 0.7);
+}
+.stage > * { position: relative; z-index: 2; }
+.stage::before, .stage::after { content: none !important; }
+/* readability: soft navy halo behind all text (zero-specificity, so each screen's own rules still win) */
+:where(.stage) * { text-shadow: 0 0 0.5vh #050a14, 0 0 1.2vh #050a14, 0 0 2.2vh rgba(5, 10, 20, 0.85); }
+
+/* headline: warm candle glow */
+h1 {
+  color: #fff !important;
+  text-shadow: 0 0 0.4vh #fff6e0, 0 0 1.4vh var(--gold), 0 0 3.2vh rgba(255, 170, 60, 0.7);
+}
+.eyebrow-kicker, .round-label, .metric-name, .meta { color: var(--gold) !important; }
+.eyebrow-kicker::after {
+  content: "   Merry Christmas";
+  font-family: "Great Vibes", cursive;
+  font-size: 1.6em;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  color: #ffe6b0;
+  text-shadow: 0 0 1vh rgba(255, 200, 110, 0.9);
+}
+.mark { color: var(--gold) !important; filter: drop-shadow(0 0 0.8vh rgba(255, 170, 60, 0.8)); }
+.num, .tag { color: var(--gold) !important; text-shadow: 0 0 1vh rgba(255, 207, 122, 0.7); }
+.slot.winner { text-shadow: 0 0 0.6vh rgba(255, 207, 122, 0.8); }
+.champion-box { box-shadow: 0 0 2vh rgba(255, 170, 60, 0.7), inset 0 0 2vh rgba(255, 170, 60, 0.35); }
+
+/* ---------- animated layers added by the rotator ---------- */
+.xm-fx { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 50; }
+.xm-fx.xm-back { z-index: 1; }        /* scene effects sit behind the words */
+
+/* fireplace: warm light that breathes and flickers */
+.xm-fire {
+  position: absolute; left: 70%; top: 50%; width: 32%; height: 48%;
+  background: radial-gradient(ellipse at 50% 55%, rgba(255, 150, 40, 0.42) 0%, rgba(255, 110, 20, 0.18) 35%, transparent 70%);
+  mix-blend-mode: screen;
+  animation: xm-flicker 2.3s ease-in-out infinite alternate;
+}
+.xm-fire.f2 { left: 74%; top: 56%; width: 22%; height: 34%; animation-duration: 1.1s; animation-delay: -0.4s; opacity: 0.8; }
+@keyframes xm-flicker {
+  0% { opacity: 0.55; transform: scale(0.97); }
+  35% { opacity: 0.95; transform: scale(1.03); }
+  60% { opacity: 0.7; transform: scale(1); }
+  100% { opacity: 1; transform: scale(1.05); }
+}
+/* whole-room warmth from the fire */
+.xm-warm {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 84% 72%, rgba(255, 140, 50, 0.16) 0%, transparent 55%);
+  mix-blend-mode: screen;
+  animation: xm-flicker 3.4s ease-in-out infinite alternate;
+}
+
+/* candle glows on the table */
+.xm-candle {
+  position: absolute; width: 4%; height: 7%;
+  background: radial-gradient(circle, rgba(255, 200, 110, 0.55) 0%, transparent 70%);
+  mix-blend-mode: screen;
+  animation: xm-flicker 1.4s ease-in-out infinite alternate;
+}
+
+/* twinkle lights on the tree, wreaths and mantel garland */
+.xm-tw {
+  position: absolute; width: 0.9vh; height: 0.9vh; margin: -0.45vh 0 0 -0.45vh;
+  border-radius: 50%;
+  background: #fff3cf;
+  box-shadow: 0 0 0.8vh 0.3vh rgba(255, 214, 140, 0.9);
+  mix-blend-mode: screen;
+  animation: xm-twinkle 3s ease-in-out infinite;
+}
+@keyframes xm-twinkle { 0%, 100% { opacity: 0.15; transform: scale(0.6); } 50% { opacity: 1; transform: scale(1.1); } }
+
+/* snow falling outside the big windows */
+.xm-window { position: absolute; left: 27%; top: 8%; width: 49%; height: 66%; overflow: hidden; }
+.xm-flake {
+  position: absolute; top: -4%; width: 0.6vh; height: 0.6vh; border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  animation: xm-snow linear infinite;
+}
+@keyframes xm-snow {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(1.2vw, 34vh); }
+  100% { transform: translate(-0.6vw, 70vh); }
+}
+
+/* string lights across the top of every screen */
+.xm-lights { position: absolute; left: 0; right: 0; top: 0; height: 9vh; }
+.xm-lights svg { width: 100%; height: 100%; display: block; }
+.xm-bulb { animation: xm-bulb 2.4s ease-in-out infinite; }
+@keyframes xm-bulb { 0%, 100% { opacity: 0.45; } 50% { opacity: 1; } }
+
+/* countdown badge, top right under the lights */
+.xm-count {
+  position: absolute; right: 2.4vw; top: 5.6vh;
+  display: flex; flex-direction: column; align-items: center;
+  padding: 0.9vh 1.4vw 1vh;
+  border: 0.25vh solid var(--gold);
+  border-radius: 0.8vh;
+  background: rgba(6, 12, 26, 0.82);
+  box-shadow: 0 0 1.6vh rgba(255, 190, 90, 0.45);
+  text-align: center;
+}
+.xm-count b {
+  font-family: "Barlow Condensed", "Barlow", sans-serif; font-weight: 700;
+  font-size: 5vh; line-height: 1; color: #fff;
+  text-shadow: 0 0 1.2vh rgba(255, 190, 90, 0.9);
+}
+.xm-count span {
+  margin-top: 0.4vh;
+  font-family: "Barlow", sans-serif; font-weight: 600;
+  font-size: 1.25vh; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold);
+}
+.xm-count.merry b { font-family: "Great Vibes", cursive; font-weight: 400; font-size: 4.4vh; }
+
+/* every animated piece gets its own GPU layer so the Fire TV only fades/moves it */
+.xm-fire, .xm-warm, .xm-candle, .xm-tw, .xm-flake, .xm-bulb { will-change: transform, opacity; }
